@@ -1,3 +1,4 @@
+using Auditoria_V5.DATA;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -7,26 +8,45 @@ namespace Auditoria_V5
 {
 	public partial class App : Application
 	{
-		public App ()
+
+        static UbiNocDb database;
+
+        public static string SelectedBthDevice2;
+        public static UbiNocDb Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new UbiNocDb(DependencyService.Get<IFileHelper>().GetLocalFilePath("UbicNoc.db3"));
+                }
+                return database;
+            }
+        }
+
+
+
+        public App ()
 		{
 			InitializeComponent();
-
-			MainPage = new MainPage();
-		}
+            MainPage = new NavigationPage(new MainPage()) { BarBackgroundColor = Color.FromHex("3e606f") };
+        }
 
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}
 
-		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
+        protected override void OnSleep()
+        {
+            // Handle when your app sleeps
+            MessagingCenter.Send<App>(this, "Sleep"); // When app sleep, send a message so I can "Cancel" the connection
+        }
 
-		protected override void OnResume ()
-		{
-			// Handle when your app resumes
-		}
-	}
+        protected override void OnResume()
+        {
+            // Handle when your app resumes
+            MessagingCenter.Send<App>(this, "Resume"); // When app resume, send a message so I can "Resume" the connection
+        }
+    }
 }

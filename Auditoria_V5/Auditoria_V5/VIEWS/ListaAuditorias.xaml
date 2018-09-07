@@ -1,12 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Auditoria_V5.VIEWS.ListaAuditorias">
+             x:Class="Auditoria_V5.ListaAuditorias" BackgroundColor="{StaticResource BackgroundColor}" >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="5">
+            <ListView x:Name="Lista_aud" Margin="10" ItemSelected="OnListItemSelected" Style="{StaticResource Celda}">
+                <ListView.Header >
+                    <Grid BackgroundColor="{StaticResource AccentColor1}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="4"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="4"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="25"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Text="Almac." Grid.Row="0" Grid.Column="0"  FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                        <Label Text="Reg.Audit" Grid.Row="0" Grid.Column="1"  FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center" HorizontalTextAlignment="End"/>
+                        <Label Text="/" Grid.Row="0" Grid.Column="2"  FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                        <Label Text="Tot. Reg." Grid.Row="0" Grid.Column="3" FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                        <Label Text="/" Grid.Row="0" Grid.Column="4"  FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                        <Label Text="Tot. Ubics." Grid.Row="0" Grid.Column="5" FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                        <Label Text="Fin." Grid.Row="0" Grid.Column="6" FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+
+                    </Grid>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <Grid  HorizontalOptions="Start">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="55"/>
+                                    <ColumnDefinition Width="4"/>
+                                    <ColumnDefinition Width="55"/>
+                                    <ColumnDefinition Width="4"/>
+                                    <ColumnDefinition Width="55"/>
+                                    <ColumnDefinition Width="25"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Text="{Binding Almacen}"  Grid.Column="0"  TextColor="{StaticResource FontColor}" VerticalOptions="Center"/>
+                                <Label Text="{Binding comprobados}"  Grid.Column="1" FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center" HorizontalTextAlignment="End"/>
+                                <Label Text="/" Grid.Column="2" TextColor="{StaticResource FontColor}"/>
+                                <Label Text="{Binding num_reg_totales}" Grid.Column="3"  FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center"/>
+                                <Label Text="/" Grid.Column="4" TextColor="{StaticResource FontColor}"/>
+                                <Label Text="{Binding num_ubicaciones}" Grid.Column="5"  FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center"/>
+                                <Image x:Name="isFinis" Source="checkOk.png" Grid.Column="6" HorizontalOptions="EndAndExpand"  IsVisible="{Binding completa}" />
+                            </Grid>
+
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

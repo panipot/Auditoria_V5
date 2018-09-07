@@ -1,5 +1,5 @@
 ﻿using Auditoria_V5.DATA;
-using Auditoria_V5.VIEWS;
+using Auditoria_V5;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -149,7 +149,8 @@ namespace Auditoria_V5
                                 ControlUnitario = contunit,
                                 DataMining = dminin,
                                 Error = false,
-                                Fichero = filenam
+                                Fichero = filenam,
+                                Obs = obs
                             };
                             await App.Database.SaveItemAsync(ubinoci);
                             if (contunit != null)
@@ -182,8 +183,10 @@ namespace Auditoria_V5
                             await App.Database.SaveItemAsync2(numseri);
                             }
                         }
-                        
+                        noc_ant = noca;
+                        ubi_ant = ubica;
                     }
+                    
                 }
                 await DisplayAlert("Fichero procesado", "Se han leido " + (lines.Length).ToString() + " registros", "OK");
             
@@ -192,11 +195,11 @@ namespace Auditoria_V5
                 var audi = new ClAuditoria2
                 {
                     Fichero = filenam,
-                    completa = false,
-                    comprobados = 0,
-                    num_reg_totales = await App.Database.GetNumRegs(filenam),
-                    num_ubicaciones = await App.Database.GetNumUbics(filenam),
-                    Almacen = ubica.Substring(0, 2)
+                    //completa = false,
+                    //comprobados = 0,
+                    //num_reg_totales = await App.Database.GetNumRegs(filenam),
+                    //num_ubicaciones = await App.Database.GetNumUbics(filenam),
+                    //Almacen = ubica.Substring(0, 2)
 
 
                 };

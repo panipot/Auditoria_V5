@@ -46,9 +46,7 @@ namespace Auditoria_V5.DATA
     public class tNumerosSerie
     {
         [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
-        [Indexed]
-        public int UbiNocID { get; set; }
+        public int ID { get; set; }   
         public string Ubicacion { get; set; }
         public string Noc { get; set; }
         public string NumSerie { get; set; }
@@ -58,24 +56,57 @@ namespace Auditoria_V5.DATA
         public string Fichero { get; set; }
     }
 
+
+    public class clFicheros
+    {
+        public string Fichero { get; set; }
+    }
+
     public class ClAuditoria2
     {
 
-        public int Id { get; set; }
+       
         public string Fichero {get; set;}
+        public string Almacen
+        {
+            get
+            {
+                var a = (App.Database.GetAlm(Fichero));
+                return string.Format("{0}", a.Result.Substring(1, 2));
+            }
+        }
         public bool completa
         {
-            get; set;
+            get
+            {
+                var a = (App.Database.IsCompleted(Fichero));
+                return a.Result;
+            }
         }
-        public int comprobados { get; set; }
+        public int comprobados
+        {
+            get
+            {
+                var a = App.Database.GetNumUbicsDone(Fichero);
+                return a.Result;
+            }
+        }
         public int num_reg_totales
         {
-            get; set;
+            get
+            {
+                var a = App.Database.GetNumRegs(Fichero);
+                return a.Result;
+            } 
         }
         public int num_ubicaciones
         {
-            get; set;
+            get
+            {
+                var a = App.Database.GetNumUbics(Fichero);
+                return a.Result;
+            }
         }
-        public string Almacen { get; set; }
+        
     }
 }

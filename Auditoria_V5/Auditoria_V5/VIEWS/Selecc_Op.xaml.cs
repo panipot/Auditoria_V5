@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Auditoria_V5.VIEWS
+namespace Auditoria_V5
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Selecc_Op : ContentPage

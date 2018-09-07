@@ -105,6 +105,51 @@ namespace Auditoria_V5.DATA
         }
 
 
+        async public Task<string> GetAlm(string filename)
+        {
+            try
+            {
+                // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
+                var g = await database.ExecuteScalarAsync<string>("Select [Ubicacion] from [UbiNoc] where [Fichero]='" + filename + "'");
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        async public Task<Boolean> IsCompleted(string filename)
+        {
+            try
+            {
+              int g= await database.ExecuteScalarAsync<int>("Select Count([Check]) from [UbiNoc] where [Fichero]='" + filename + "' and [Check]=0");
+
+                if (g>0)
+                { 
+                    return false;
+                }
+                else
+                {
+                    return true;
+
+                }
+                
+            }
+            catch
+            {
+                return false;
+            }
+            
+        }
+
+
+        public Task<List<clFicheros>> GetFicheros()
+        {
+            
+            return database.QueryAsync<clFicheros>("select [Fichero] from [UbiNoc] group by [Fichero]");
+
+        }
 
     }
 }

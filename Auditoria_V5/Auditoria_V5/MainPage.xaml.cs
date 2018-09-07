@@ -1,4 +1,4 @@
-﻿using Auditoria_V5.VIEWS;
+﻿using Auditoria_V5;
 using System;
 using System.Collections.Generic;
 using System.Linq;

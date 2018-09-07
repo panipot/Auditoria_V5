@@ -90,27 +90,12 @@ namespace Auditoria_V5.DATA
             }
         }
 
-        async public Task<int> GetNumRegs(string filename)
+         public Task<int> GetNumRegs(string filename)
         {
             try
             {
                 // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
-                var g = await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) as Num from [UbiNoc] where [Fichero]='" + filename + "'");
-                return g;
-            }
-            catch
-            {
-                return 0;
-            }
-        }
-
-
-        async public Task<string> GetAlm(string filename)
-        {
-            try
-            {
-                // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
-                var g = await database.ExecuteScalarAsync<string>("Select [Ubicacion] from [UbiNoc] where [Fichero]='" + filename + "'");
+                var g =  database.ExecuteScalarAsync<int>("Select Count(Ubicacion) as Num from [UbiNoc] where [Fichero]='" + filename + "'");
                 return g;
             }
             catch
@@ -119,26 +104,33 @@ namespace Auditoria_V5.DATA
             }
         }
 
-        async public Task<Boolean> IsCompleted(string filename)
+
+         public Task<string> GetAlm(string filename)
         {
             try
             {
-              int g= await database.ExecuteScalarAsync<int>("Select Count([Check]) from [UbiNoc] where [Fichero]='" + filename + "' and [Check]=0");
+                // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
+                var g =  database.ExecuteScalarAsync<string>("Select [Ubicacion] from [UbiNoc] where [Fichero]='" + filename + "'");
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
-                if (g>0)
-                { 
-                    return false;
-                }
-                else
-                {
-                    return true;
+         public  Task<int> IsCompleted(string filename)
+        {
+            try
+            {
+              var g=   database.ExecuteScalarAsync<int>("Select Count([Check]) from [UbiNoc] where [Fichero]='" + filename + "' and [Check]=0");
 
-                }
+                return g;
                 
             }
             catch
             {
-                return false;
+                return null;
             }
             
         }

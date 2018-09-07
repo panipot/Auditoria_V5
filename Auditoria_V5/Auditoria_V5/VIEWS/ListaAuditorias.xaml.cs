@@ -30,6 +30,7 @@ namespace Auditoria_V5
             {
                 ClAuditoria2 auditoria = new ClAuditoria2();
                 auditoria.Fichero=item.Fichero;
+
                 milista.Add(auditoria);
             }
 

@@ -22,6 +22,11 @@ namespace Auditoria_V5.DATA
             return database.Table<UbiNoc>().FirstOrDefaultAsync();
         }
 
+        public Task<List<UbiNoc>> GetItemsAsync()
+        {
+            return database.Table<UbiNoc>().ToListAsync();
+        }
+
         public Task<UbiNoc> GetFichAsync(string fich)
         {
             return database.Table<UbiNoc>().Where(i => i.Fichero == fich).FirstOrDefaultAsync();

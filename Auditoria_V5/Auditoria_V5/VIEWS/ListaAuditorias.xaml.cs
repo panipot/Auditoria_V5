@@ -46,7 +46,7 @@ namespace Auditoria_V5
             await Navigation.PushAsync(
                    new Selecc_Op
                    {
-                      // BindingContext = e.SelectedItem as ClAuditoria2
+                       BindingContext = e.SelectedItem as ClAuditoria2
                    }
                    );
         }

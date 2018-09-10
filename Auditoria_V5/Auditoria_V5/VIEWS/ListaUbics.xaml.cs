@@ -30,9 +30,14 @@ namespace Auditoria_V5
 
         }
 
-        private void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private  async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-
+            await Navigation.PushAsync(
+                   new Selecc_Op
+                   {
+                       BindingContext = e.SelectedItem as ClAuditoria2
+                   }
+                   );
         }
     }
 }

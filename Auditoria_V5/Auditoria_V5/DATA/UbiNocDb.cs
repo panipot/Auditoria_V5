@@ -171,5 +171,13 @@ namespace Auditoria_V5.DATA
 
         }
 
+        public Task<List<UbiNoc>> GetUbiNoc(string ubi)
+        {
+            string param = ubi;
+            return database.QueryAsync<UbiNoc>("select * from [UbiNoc] where [Ubicacion]='" + param + "'");
+            //return database.Table<UbiNoc>().Where(i => i.Ubicacion == ubi).ToListAsync();
+        }
+
+
     }
 }

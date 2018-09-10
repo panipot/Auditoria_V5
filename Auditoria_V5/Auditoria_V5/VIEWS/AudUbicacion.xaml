@@ -1,12 +1,81 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Auditoria_V5.AudUbicacion">
+             x:Class="Auditoria_V5.AudUbicacion"
+             Title="" 
+             BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Content>
+
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button Clicked="Button_Clicked"></Button>
+            <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource AccentColor1}">
+                <Label Text="Estado:" TextColor="{StaticResource MainColor}"/>
+                <Label Text="{Binding EstUbicacion}" TextColor="{StaticResource MainColor}"/>
+                <Label Text="Revisada:" TextColor="{StaticResource MainColor}"/>
+                <Switch IsToggled="{Binding Check}"/>
+            </StackLayout>
+            <StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="NOC" Grid.Row="0" Grid.Column="0"  TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                    <Label Text="Estado" Grid.Row="0" Grid.Column="1" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                    <Label Text="Cant." Grid.Row="0" Grid.Column="2" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                    <Label Text="L/S" Grid.Row="0" Grid.Column="3" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                    <Label Text="Check" Grid.Row="0" Grid.Column="4" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+
+                </Grid>
+
+
+            </StackLayout>
+            <ScrollView>
+                <ListView x:Name="listView"  HorizontalOptions="Start" Style="{StaticResource Celda}" ItemSelected="listView_ItemSelected"  >
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <Grid  HorizontalOptions="Start">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <StackLayout Orientation="Vertical" Grid.Column="0" Grid.Row="0" Padding="10,0,0,0">
+                                        <Label x:Name="eNOC" Text="{Binding Noc}" FontSize="Micro" TextColor="{StaticResource FontColor}" VerticalOptions="Center"/>
+                                        <Label Text="{Binding Descripcion}" FontSize="Micro" FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding EstadoOp}" Grid.Column="1" FontSize="Micro" FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center"/>
+                                    <Entry x:Name="eCant" Keyboard="Numeric" Grid.Column="2" FontSize="Small" Grid.Row="0" TextColor="{StaticResource FontColor}" VerticalOptions="CenterAndExpand" Completed="Entry_Completed"/>
+                                    <Button Image="list_numbered.png" Grid.Column="3"  Grid.Row="0"  IsVisible="{Binding ControlUnitario}" Clicked="listaserial_Clicked"/>
+
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </ScrollView>
+
+
+
+            <StackLayout Orientation="Horizontal">
+
+                <Button HeightRequest="50" BorderRadius="35" Text="Finaliza Ubicacion" Clicked="Fin_Clicked" BackgroundColor="{StaticResource MainColor}" HorizontalOptions="CenterAndExpand" />
+                <Button HeightRequest="50" BorderRadius="35" Text="Añade NOC" Clicked="Add_Clicked" BackgroundColor="{StaticResource MainColor}" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -114,4 +114,38 @@ namespace Auditoria_V5.DATA
         }
         
     }
+
+    public class clUbicacion
+    {
+
+        public string Ubicacion { get; set; }
+        public bool Error
+        {
+
+            get
+            {
+                var a = (App.Database.GetErrorUbi(Ubicacion));
+                if (Convert.ToInt32(a.Result) != 0)
+                { return true; }
+                else
+                { return false; };
+            }
+
+
+        }
+        public bool Check { get; set; }
+        public int Num_nocs
+        {
+            get; set;
+
+        }
+        public string EstUbicacion
+        {
+            get; set;
+
+
+        }
+
+
+    }
 }

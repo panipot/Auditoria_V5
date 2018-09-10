@@ -18,14 +18,30 @@ namespace Auditoria_V5
 			InitializeComponent ();
 		}
 
-        private void Lista_Clicked(object sender, EventArgs e)
+        async void Lista_Clicked(object sender, EventArgs e)
         {
+            ClAuditoria2 auditoria = (ClAuditoria2)BindingContext;
 
+            await Navigation.PushAsync(new ListaUbics(auditoria));
         }
 
-        private void Almacen_Clicked(object sender, EventArgs e)
+        async void Almacen_Clicked(object sender, EventArgs e)
         {
+            clListaUbics arch = new clListaUbics();
+            List<clUbicacion> lista = new List<clUbicacion>();
+            var auditoria = (ClAuditoria2)BindingContext;
 
+            lista = await arch.Rellena_lista_ubics(auditoria);
+
+
+            for (int i = 0; i < lista.Count - 1; i++)
+            {
+                await Navigation.PushAsync(
+                    new AudUbicacion()
+                    {
+                        BindingContext = lista[i] as clUbicacion
+                    });
+            }
         }
 
         private void Export_Clicked(object sender, EventArgs e)
@@ -33,6 +49,7 @@ namespace Auditoria_V5
             DATA.ExportDb expo = new DATA.ExportDb();
             ClAuditoria2 auditoria = (ClAuditoria2)BindingContext;
             expo.Exporta("ALMACEN_" + auditoria.Almacen + ".txt", "UbicNoc.db3");
+            Navigation.PopAsync();
             Navigation.PopAsync();
         }
     }

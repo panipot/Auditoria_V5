@@ -148,5 +148,28 @@ namespace Auditoria_V5.DATA
 
         }
 
+        public Task<int> GetErrorUbi(string ubicacion)
+        {
+            try
+            {
+                // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
+                var g = database.ExecuteScalarAsync<int>("Select Count(Ubicacion) as Num from [UbiNoc] where [Ubicacion]='" + ubicacion + "' and [Error]<>0");
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public Task<List<clUbicacion>> GetUbicsFich(ClAuditoria2 auditoria)
+        {
+            string param = auditoria.Fichero;
+            //return database.QueryAsync<clUbicacion>("SELECT [Ubicacion] FROM [UbiNoc] where [Fichero]='" + param + "' group by [Ubicacion]");
+
+            return database.QueryAsync<clUbicacion>("select [Ubicacion], [Check], [EstUbicacion], count(NOC) as Num_nocs from UbiNOC where [Fichero] = '" + param + "' group by [Ubicacion], [Check], [EstUbicacion]");
+
+        }
+
     }
 }

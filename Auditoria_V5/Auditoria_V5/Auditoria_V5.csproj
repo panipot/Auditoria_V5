@@ -10,7 +10,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="VIEWS\FiltroUbics.xaml.cs">
+      <DependentUpon>FiltroUbics.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="VIEWS\AudUbicacion.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="VIEWS\FiltroUbics.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="VIEWS\ListaAuditorias.xaml">

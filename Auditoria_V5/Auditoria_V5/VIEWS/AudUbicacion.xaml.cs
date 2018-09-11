@@ -42,10 +42,12 @@ namespace Auditoria_V5
 
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-
-        }
+  
+            private async void Button_Clicked(object sender, EventArgs e)
+            {
+                await Navigation.PushAsync(new SelBth());
+            }
+        
 
         private void listaserial_Clicked(object sender, EventArgs e)
         {

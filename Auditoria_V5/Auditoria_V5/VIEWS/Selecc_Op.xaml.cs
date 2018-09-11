@@ -52,5 +52,14 @@ namespace Auditoria_V5
             Navigation.PopAsync();
             Navigation.PopAsync();
         }
+
+        
+
+        async void Filtro_Clicked(object sender, EventArgs e)
+        {
+            ClAuditoria2 auditoria = (ClAuditoria2)BindingContext;
+
+            await Navigation.PushAsync(new FiltroUbics(auditoria));
+        }
     }
 }

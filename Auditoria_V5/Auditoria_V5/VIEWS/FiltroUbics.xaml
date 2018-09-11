@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Auditoria_V5.FiltroUbics" BackgroundColor="{StaticResource BackgroundColor}"
+             Title="{Binding Almacen}">
+    <ContentPage.Content>
+        <StackLayout Padding="5" >
+            <Picker x:Name="pZona" Title="Filtro por Zona" TextColor="{StaticResource FontColor}" SelectedIndexChanged="pZona_SelectedIndexChanged" ></Picker>
+            <Picker x:Name="pPasillo" Title="Filtro por Pasillo" TextColor="{StaticResource FontColor}"></Picker>
+            <Picker x:Name="pDm" Title="Filtro por DataMining" TextColor="{StaticResource FontColor}"></Picker>
+            <Button Text="Filtrar" 
+                    HeightRequest="50" 
+                    BorderRadius="35" 
+                    BackgroundColor="{StaticResource MainColor}" 
+                    Clicked="Filtrar_Clicked"
+                    VerticalOptions="EndAndExpand"></Button>
+       
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

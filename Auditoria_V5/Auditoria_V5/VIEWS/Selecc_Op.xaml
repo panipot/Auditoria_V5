@@ -6,10 +6,10 @@
     <ContentPage.Content>
         <StackLayout Padding="5">
 
-            <Button Text="Lista Ubicaciones" HeightRequest="100" BorderRadius="40" Clicked="Lista_Clicked" BackgroundColor="{StaticResource MainColor}"></Button>
-            <Button Text="Filtro" HeightRequest="100" BorderRadius="40" BackgroundColor="{StaticResource MainColor}"></Button>
-            <Button Text="Almacen Completo" HeightRequest="100" BorderRadius="40" Clicked="Almacen_Clicked" BackgroundColor="{StaticResource MainColor}"></Button>
-            <Button Text="Exportar Resultados" HeightRequest="100" BorderRadius="40" Clicked="Export_Clicked" BackgroundColor="{StaticResource MainColor}"></Button>
+            <Button Text="Lista Ubicaciones" HeightRequest="80" BorderRadius="35" Clicked="Lista_Clicked" BackgroundColor="{StaticResource MainColor}"></Button>
+            <Button Text="Filtro" HeightRequest="80" BorderRadius="35" BackgroundColor="{StaticResource MainColor}" Clicked="Filtro_Clicked"></Button>
+            <Button Text="Almacen Completo" HeightRequest="80" BorderRadius="35" Clicked="Almacen_Clicked" BackgroundColor="{StaticResource MainColor}"></Button>
+            <Button Text="Exportar Resultados" HeightRequest="80" BorderRadius="35" Clicked="Export_Clicked" BackgroundColor="{StaticResource MainColor}"></Button>
 
 
         </StackLayout>

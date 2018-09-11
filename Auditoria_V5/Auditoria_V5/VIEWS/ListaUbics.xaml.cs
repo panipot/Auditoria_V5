@@ -32,12 +32,14 @@ namespace Auditoria_V5
 
         private  async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+
+            var ubicacion2 = (clUbicacion)e.SelectedItem;
+
             await Navigation.PushAsync(
-                   new Selecc_Op
-                   {
-                       BindingContext = e.SelectedItem as ClAuditoria2
-                   }
-                   );
+                    new AudUbicacion()
+                    {
+                        BindingContext = ubicacion2
+                    });
         }
     }
 }

@@ -178,6 +178,7 @@ namespace Auditoria_V5.DATA
             //return database.Table<UbiNoc>().Where(i => i.Ubicacion == ubi).ToListAsync();
         }
 
-
+     
+        
     }
 }

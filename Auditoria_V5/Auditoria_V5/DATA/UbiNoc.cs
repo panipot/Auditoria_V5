@@ -147,7 +147,7 @@ namespace Auditoria_V5.DATA
         }
         public string Zona { get { return string.Format("{0}", this.Ubicacion.Substring(2, 1)); } }
         public string Pasillo { get { return string.Format("{0}", this.Ubicacion.Substring(3, 2)); } }
-        
+        public string DataMining { get; set; }
 
     }
 }

@@ -208,7 +208,7 @@ namespace Auditoria_V5
                 await Navigation.PushAsync(
                     new Selecc_Op
                     {
-                       // BindingContext = audi
+                        BindingContext = audi
                     }
                     );
             }

@@ -167,9 +167,35 @@ namespace Auditoria_V5.DATA
             string param = auditoria.Fichero;
             //return database.QueryAsync<clUbicacion>("SELECT [Ubicacion] FROM [UbiNoc] where [Fichero]='" + param + "' group by [Ubicacion]");
 
-            return database.QueryAsync<clUbicacion>("select [Ubicacion], [Check], [EstUbicacion], count(NOC) as Num_nocs from UbiNOC where [Fichero] = '" + param + "' group by [Ubicacion], [Check], [EstUbicacion]");
+            return database.QueryAsync<clUbicacion>("select [Ubicacion], [Check], [EstUbicacion], [DataMining], count(NOC) as Num_nocs from UbiNOC where [Fichero] = '" + param + "' group by [Ubicacion], [Check], [EstUbicacion],[DataMining]");
 
         }
+        //public Task<List<clUbicacion>> GetUbicsZona(ClAuditoria2 auditoria, string zona)
+        //{
+        //    string param1 = auditoria.Fichero;
+        //    //return database.QueryAsync<clUbicacion>("SELECT [Ubicacion] FROM [UbiNoc] where [Fichero]='" + param + "' group by [Ubicacion]");
+
+        //    return database.QueryAsync<clUbicacion>("select [Ubicacion], [Check], [EstUbicacion], count(NOC) as Num_nocs from UbiNOC where [Fichero] = '" + param1 + "' and substr([Ubicacion],2,1)='" + zona+"' group by [Ubicacion], [Check], [EstUbicacion]");
+
+        //}
+        //public Task<List<clUbicacion>> GetUbicsPass(ClAuditoria2 auditoria, string pasillo)
+        //{
+        //    string param1 = auditoria.Fichero;
+        //    //return database.QueryAsync<clUbicacion>("SELECT [Ubicacion] FROM [UbiNoc] where [Fichero]='" + param + "' group by [Ubicacion]");
+
+        //    return database.QueryAsync<clUbicacion>("select [Ubicacion], [Check], [EstUbicacion], count(NOC) as Num_nocs from UbiNOC where [Fichero] = '" + param1 + "' and substr([Ubicacion],2,1)='" + zona + "' group by [Ubicacion], [Check], [EstUbicacion]");
+
+        //}
+
+        //public Task<List<clUbicacion>> GetUbicsFiltr(ClAuditoria2 auditoria , string zona, string pasillo, string dm)
+        //{
+        //    string param = auditoria.Fichero;
+        //    //return database.QueryAsync<clUbicacion>("SELECT [Ubicacion] FROM [UbiNoc] where [Fichero]='" + param + "' group by [Ubicacion]");
+
+        //    return database.QueryAsync<clUbicacion>("select [Ubicacion], [Check], [EstUbicacion], count(NOC) as Num_nocs from UbiNOC where [Fichero] = '" + param + "' group by [Ubicacion], [Check], [EstUbicacion]");
+
+        //}
+
 
         public Task<List<UbiNoc>> GetUbiNoc(string ubi)
         {

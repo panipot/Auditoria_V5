@@ -5,32 +5,32 @@
              BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Content>
 
-        <StackLayout>
+        <StackLayout Padding="5">
             <Button Clicked="Button_Clicked"></Button>
             <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource AccentColor1}">
                 <Label Text="Estado:" TextColor="{StaticResource MainColor}"/>
                 <Label Text="{Binding EstUbicacion}" TextColor="{StaticResource MainColor}"/>
-                <Label Text="Revisada:" TextColor="{StaticResource MainColor}"/>
-                <Switch IsToggled="{Binding Check}"/>
+                <Label Text="Revisada:" TextColor="{StaticResource MainColor}" HorizontalOptions="EndAndExpand"/>
+                <Switch IsToggled="{Binding Check}" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
-            <StackLayout>
+            <StackLayout  BackgroundColor="{StaticResource AccentColor1}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="55"/>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="30"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Label Text="NOC" Grid.Row="0" Grid.Column="0"  TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
-                    <Label Text="Estado" Grid.Row="0" Grid.Column="1" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
-                    <Label Text="Cant." Grid.Row="0" Grid.Column="2" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
-                    <Label Text="L/S" Grid.Row="0" Grid.Column="3" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
-                    <Label Text="Check" Grid.Row="0" Grid.Column="4" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                    <Label Text="NOC" Grid.Row="0" Grid.Column="0"  TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center" FontSize="Small"/>
+                    <Label Text="OP." Grid.Row="0" Grid.Column="1" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center" FontSize="Small"/>
+                    <Label Text="Cant." Grid.Row="0" Grid.Column="2" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center" FontSize="Small"/>
+                    <Label Text="L/S" Grid.Row="0" Grid.Column="3" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center" FontSize="Small" />
+                    <Label Text="Chk" Grid.Row="0" Grid.Column="4" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center" FontSize="Small"/>
 
                 </Grid>
 
@@ -44,22 +44,23 @@
                             <ViewCell >
                                 <Grid  HorizontalOptions="Start">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="100"/>
                                         <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="55"/>
+                                        <ColumnDefinition Width="35"/>
+                                        <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <StackLayout Orientation="Vertical" Grid.Column="0" Grid.Row="0" Padding="10,0,0,0">
-                                        <Label x:Name="eNOC" Text="{Binding Noc}" FontSize="Micro" TextColor="{StaticResource FontColor}" VerticalOptions="Center"/>
-                                        <Label Text="{Binding Descripcion}" FontSize="Micro" FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center"/>
+                                    <StackLayout Orientation="Vertical" Grid.Column="0" Grid.Row="0" Padding="0,0,0,0">
+                                        <Label x:Name="eNOC" Text="{Binding Noc}" FontSize="Micro" TextColor="{StaticResource FontColor}" VerticalOptions="Center" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Descripcion}" FontSize="Micro" FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center" HorizontalTextAlignment="Start"/>
                                     </StackLayout>
                                     <Label Text="{Binding EstadoOp}" Grid.Column="1" FontSize="Micro" FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center"/>
                                     <Entry x:Name="eCant" Keyboard="Numeric" Grid.Column="2" FontSize="Small" Grid.Row="0" TextColor="{StaticResource FontColor}" VerticalOptions="CenterAndExpand" Completed="Entry_Completed"/>
                                     <Button Image="list_numbered.png" Grid.Column="3"  Grid.Row="0"  IsVisible="{Binding ControlUnitario}" Clicked="listaserial_Clicked"/>
-
+                                    <Image Source="checkOk.png" Grid.Column="4" Grid.Row="0" HorizontalOptions="End" IsVisible="{Binding Check}" />
 
                                 </Grid>
                             </ViewCell>

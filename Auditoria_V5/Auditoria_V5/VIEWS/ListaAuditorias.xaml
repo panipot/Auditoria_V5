@@ -4,7 +4,7 @@
              x:Class="Auditoria_V5.ListaAuditorias" BackgroundColor="{StaticResource BackgroundColor}" >
     <ContentPage.Content>
         <StackLayout Padding="5">
-            <ListView x:Name="Lista_aud" Margin="10" ItemSelected="OnListItemSelected" Style="{StaticResource Celda}">
+            <ListView x:Name="Lista_aud" Margin="10" ItemSelected="OnListItemSelected" Style="{StaticResource Celda}" >
                 <ListView.Header >
                     <Grid BackgroundColor="{StaticResource AccentColor1}">
                         <Grid.ColumnDefinitions>

@@ -24,8 +24,11 @@ namespace Auditoria_V5
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            pDm.SelectedItem = null;
+            pZona.SelectedItem = null;
+            pPasillo.SelectedItem = null;
             var auditoria = (ClAuditoria2)BindingContext;
-            
+
             Ubicaciones = await App.Database.GetUbicsFich(auditoria);
             List<string> zonas = new List<string>();
             pPasillo.IsEnabled = false;
@@ -36,9 +39,11 @@ namespace Auditoria_V5
             }
 
             pZona.ItemsSource = zonas.Distinct().ToList();
+            if (pDm.Items.Count == 0)
+            { 
             pDm.Items.Add("Si");
             pDm.Items.Add("No");
-
+        }
 
             // }
 
@@ -57,6 +62,7 @@ namespace Auditoria_V5
             string fZona = pZona.SelectedItem?.ToString()??"";
             string fPass = pPasillo.SelectedItem?.ToString()??"";
             string fDm = pDm.SelectedItem?.ToString()??"";
+            bool aDm;
             clListaUbics arch = new clListaUbics();
             List<clUbicacion> lista = new List<clUbicacion>();
             List<clUbicacion> lista2 = new List<clUbicacion>();
@@ -89,17 +95,22 @@ namespace Auditoria_V5
             }
             else
             {
+                if(fDm=="Si")
+                { aDm = true; }
+                else
+                { aDm = false; }
                 if (fPass == "")
                 { //fdm nocnulo y f pasillo nulo
                     if (fZona == "")
                     { //4.Solo DM NO Nulo
-                        lista2 = lista.Where(x => (x.DataMining == fDm) ).ToList();
+                       
+                        lista2 = lista.Where(x => (x.DataMining == aDm) ).ToList();
 
 
                     }
                     else
                     {//5 .Solo Fpas nulo
-                        lista2 = lista.Where(x => (x.DataMining == fDm) && (x.Zona == fZona)).ToList();
+                        lista2 = lista.Where(x => (x.DataMining == aDm) && (x.Zona == fZona)).ToList();
 
                     }
 
@@ -107,7 +118,9 @@ namespace Auditoria_V5
                 }
                 else
                 {//6.fdm no nulo  f pasillo no nulo---> fzona es NO NULO
-                    lista2 = lista.Where(x => (x.DataMining == fDm) &&  (x.Pasillo == fPass) && (x.Zona == fZona)).ToList();
+                    
+                     lista2 = lista.Where(x => (x.DataMining == aDm) && (x.Pasillo == fPass) && (x.Zona == fZona)).ToList(); 
+                    
 
                 }
             }
@@ -122,7 +135,7 @@ namespace Auditoria_V5
 
 
 
-            for (int i = 0; i < lista2.Count - 1; i++)
+            for (int i = 0; i <= lista2.Count - 1; i++)
             {
                 await Navigation.PushAsync(
                     new AudUbicacion()
@@ -135,21 +148,26 @@ namespace Auditoria_V5
 
         }
 
-        private void pZona_SelectedIndexChanged(object sender, EventArgs e)
+        
+
+        private void pZona_Unfocused(object sender, FocusEventArgs e)
         {
-            pPasillo.IsEnabled = true;
-            List<string> pasillos = new List<string>();
-            
-            var ubicaciones2 = Ubicaciones.Where(x => x.Zona == pZona.SelectedItem.ToString());
-
-
-
-            foreach (clUbicacion ubicacion in ubicaciones2)
+            string fZona = pZona.SelectedItem?.ToString() ?? "";
+            if (fZona != "")
             {
-                pasillos.Add(ubicacion.Pasillo);
-            }
-            pPasillo.ItemsSource = pasillos.Distinct().ToList();
+                pPasillo.IsEnabled = true;
+                List<string> pasillos = new List<string>();
 
+                var ubicaciones2 = Ubicaciones.Where(x => x.Zona == pZona.SelectedItem.ToString());
+
+
+
+                foreach (clUbicacion ubicacion in ubicaciones2)
+                {
+                    pasillos.Add(ubicacion.Pasillo);
+                }
+                pPasillo.ItemsSource = pasillos.Distinct().ToList();
+            }
         }
     }
 }

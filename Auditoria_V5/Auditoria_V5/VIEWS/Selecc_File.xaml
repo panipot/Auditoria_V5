@@ -5,7 +5,7 @@
              
              x:Class="Auditoria_V5.Selecc_File" BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="5">
             <Label Text="Seleccione un fichero:" TextColor="{StaticResource FontColor}" />
             <ListView x:Name="fileListView"
                   
@@ -29,7 +29,7 @@
             <Label x:Name="fileEditor" TextColor="{StaticResource FontColor}">
 
             </Label>
-            <Button x:Name="btnProcesa" Text="Nueva Auditoria" VerticalOptions="EndAndExpand" Clicked="btnProcesa_Clicked" IsEnabled="False" BackgroundColor="{StaticResource MainColor}"/>
+            <Button x:Name="btnProcesa" Text="Nueva Auditoria" BorderRadius="35" HeightRequest="50" VerticalOptions="EndAndExpand" Clicked="btnProcesa_Clicked" IsEnabled="False" BackgroundColor="{StaticResource MainColor}"/>
 
         </StackLayout>
     </ContentPage.Content>

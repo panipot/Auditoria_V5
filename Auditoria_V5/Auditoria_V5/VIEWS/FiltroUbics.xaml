@@ -5,7 +5,7 @@
              Title="{Binding Almacen}">
     <ContentPage.Content>
         <StackLayout Padding="5" >
-            <Picker x:Name="pZona" Title="Filtro por Zona" TextColor="{StaticResource FontColor}" SelectedIndexChanged="pZona_SelectedIndexChanged" ></Picker>
+            <Picker x:Name="pZona" Title="Filtro por Zona" TextColor="{StaticResource FontColor}" Unfocused="pZona_Unfocused"  ></Picker>
             <Picker x:Name="pPasillo" Title="Filtro por Pasillo" TextColor="{StaticResource FontColor}"></Picker>
             <Picker x:Name="pDm" Title="Filtro por DataMining" TextColor="{StaticResource FontColor}"></Picker>
             <Button Text="Filtrar" 

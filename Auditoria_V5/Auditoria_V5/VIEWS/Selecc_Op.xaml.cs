@@ -34,7 +34,7 @@ namespace Auditoria_V5
             lista = await arch.Rellena_lista_ubics(auditoria);
 
 
-            for (int i = 0; i < lista.Count - 1; i++)
+            for (int i = 0; i <= lista.Count - 1; i++)
             {
                 await Navigation.PushAsync(
                     new AudUbicacion()

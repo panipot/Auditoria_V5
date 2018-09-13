@@ -56,21 +56,95 @@ namespace Auditoria_V5
 
         private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            auditado = (UbiNoc)e.SelectedItem;
+            eObs.Text = auditado.Obs;
 
         }
 
-        private void Entry_Completed(object sender, EventArgs e)
+        private async void Entry_Completed(object sender, EventArgs e)
         {
+            var texto = ((Entry)sender).Text;
+            auditado = (UbiNoc)((Entry)sender).BindingContext;
+
+            if (auditado.Cantidad != Convert.ToDouble(texto))
+
+            {
+
+                if (await DisplayAlert("", "Cantidad No concuerda, Confirmamos??", "Si", "No"))
+                {
+                    if (auditado.ControlUnitario == null)
+                    {
+                        auditado.Error = true;
+                        auditado.Check = true;
+                    }
+                    else
+                    {
+                        //ABRIMOS VERIFICACION DE SERIADOS
+                    }
+
+                    auditado.CantReal = Convert.ToDouble(texto);
+                    await App.Database.SaveItemAsync(auditado);
+
+
+
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                auditado.Error = false;
+                auditado.CantReal = Convert.ToDouble(texto);
+                await App.Database.SaveItemAsync(auditado);
+                if (auditado.ControlUnitario != null)
+                {
+                    //ABRIMOS VERIFICACION DE SERIADOS
+                }
+
+
+
+
+            }
+
+            //listView.SelectedItem = null;
 
         }
 
-        private void Fin_Clicked(object sender, EventArgs e)
+        private async void Fin_Clicked(object sender, EventArgs e)
         {
+            clUbicacion ubicacion = (clUbicacion)BindingContext;
+            var action = await DisplayAlert("Aviso", "La ubicacion: " + ubicacion.Ubicacion + " Se marcará como finalizada, ¿Seguro?", "Si", "No");
+            if (!action)
+            {
+                //await Navigation.PushAsync(new MainPage());
 
+            }
+            else
+            {
+                await App.Database.Set_Ubi_Done(ubicacion.Ubicacion);
+                await Navigation.PopAsync();
+            }
         }
 
         private void Add_Clicked(object sender, EventArgs e)
         {
+
+        }
+
+        private void eCant_Focused(object sender, FocusEventArgs e)
+        {
+            auditado = (UbiNoc)((Entry)sender).BindingContext;
+            listView.SelectedItem = auditado;
+            eObs.Text = auditado.Obs;
+        }
+
+        private async void eObs_completed(object sender, EventArgs e)
+        {
+            listView.SelectedItem = auditado;
+            await App.Database.SaveItemObs(auditado, eObs.Text);
+
 
         }
     }

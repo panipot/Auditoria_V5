@@ -148,6 +148,13 @@ namespace Auditoria_V5.DATA
         public string Zona { get { return string.Format("{0}", this.Ubicacion.Substring(2, 1)); } }
         public string Pasillo { get { return string.Format("{0}", this.Ubicacion.Substring(3, 2)); } }
         public bool DataMining { get; set; }
-
+        public string DataMining2 { get
+            {
+                if(DataMining==true)
+                { return "S"; }
+                else
+                { return "N"; }
+            }
+        }
     }
 }

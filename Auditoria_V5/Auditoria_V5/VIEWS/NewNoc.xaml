@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Auditoria_V5.NewNoc"
+             BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout Padding="5">
+            <Label Text="NOC:" BackgroundColor="{StaticResource AccentColor1}"/>
+            <Entry Keyboard="Text" Placeholder="Escanee o Introduzca NOC"/>
+            <Label Text="Descripcion:" BackgroundColor="{StaticResource AccentColor1}"/>
+            <Entry Keyboard="Text" Placeholder="Introduzca una breve descripcion"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Cantidad:" BackgroundColor="{StaticResource AccentColor1}"/>
+            <Entry Keyboard="Numeric" WidthRequest="100"/>
+            </StackLayout>
+
+            <Label Text="NºSerie/Lote:" BackgroundColor="{StaticResource AccentColor1}"/>
+            <StackLayout Orientation="Horizontal">
+            <Entry Placeholder="Lea NumSerie/Lote" HorizontalOptions="StartAndExpand"/>
+                <Button Text="Add" HorizontalOptions="EndAndExpand" BackgroundColor="{StaticResource MainColor}"/>
+            </StackLayout>
+            <ListView x:Name="grpNs" BackgroundColor="{StaticResource AccentColor1}"></ListView>
+            <Button HeightRequest="50" BorderRadius="35" Text="Añadir datos" BackgroundColor="{StaticResource MainColor}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

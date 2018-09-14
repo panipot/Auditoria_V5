@@ -128,9 +128,10 @@ namespace Auditoria_V5
             }
         }
 
-        private void Add_Clicked(object sender, EventArgs e)
+        private async void Add_Clicked(object sender, EventArgs e)
         {
-
+            clUbicacion ubicacion = (clUbicacion)BindingContext;
+            await Navigation.PushAsync(new NewNoc(ubicacion.Ubicacion));
         }
 
         private void eCant_Focused(object sender, FocusEventArgs e)

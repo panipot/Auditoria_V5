@@ -18,6 +18,7 @@ namespace Auditoria_V5
         public AudUbicacion ()
 		{
 			InitializeComponent ();
+            eObs.IsEnabled = false;
 		}
 
 
@@ -57,6 +58,7 @@ namespace Auditoria_V5
         private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             auditado = (UbiNoc)e.SelectedItem;
+            eObs.IsEnabled = true;
             eObs.Text = auditado.Obs;
 
         }
@@ -128,11 +130,22 @@ namespace Auditoria_V5
             }
         }
 
+
+
+
         private async void Add_Clicked(object sender, EventArgs e)
         {
             clUbicacion ubicacion = (clUbicacion)BindingContext;
-            await Navigation.PushAsync(new NewNoc(ubicacion.Ubicacion));
+            await Navigation.PushAsync(new NewNoc()
+            {
+                BindingContext = ubicacion
+            }
+                );
         }
+
+
+
+
 
         private void eCant_Focused(object sender, FocusEventArgs e)
         {
@@ -144,6 +157,7 @@ namespace Auditoria_V5
         private async void eObs_completed(object sender, EventArgs e)
         {
             listView.SelectedItem = auditado;
+
             await App.Database.SaveItemObs(auditado, eObs.Text);
 
 

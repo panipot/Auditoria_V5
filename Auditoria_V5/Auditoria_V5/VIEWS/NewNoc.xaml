@@ -5,21 +5,21 @@
              BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Content>
         <StackLayout Padding="5">
-            <Label Text="NOC:" BackgroundColor="{StaticResource AccentColor1}"/>
-            <Entry Keyboard="Text" Placeholder="Escanee o Introduzca NOC"/>
-            <Label Text="Descripcion:" BackgroundColor="{StaticResource AccentColor1}"/>
-            <Entry Keyboard="Text" Placeholder="Introduzca una breve descripcion"/>
+            <Label Text="NOC:" BackgroundColor="{StaticResource AccentColor1}" TextColor="{StaticResource MainColor}"/>
+            <Entry x:Name="eNOC" Keyboard="Text" Placeholder="Escanee o Introduzca NOC" TextColor="{StaticResource FontColor}" Completed="eNoc_completed"/>
+            <Label Text="Descripcion:" BackgroundColor="{StaticResource AccentColor1}" TextColor="{StaticResource MainColor}"/>
+            <Entry Keyboard="Text" Placeholder="Introduzca una breve descripcion" TextColor="{StaticResource FontColor}" FontSize="Medium"/>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Cantidad:" BackgroundColor="{StaticResource AccentColor1}"/>
-            <Entry Keyboard="Numeric" WidthRequest="100"/>
+                <Label Text="Cantidad:" BackgroundColor="{StaticResource AccentColor1}" TextColor="{StaticResource MainColor}" VerticalTextAlignment="Center"/>
+                <Entry Keyboard="Numeric" WidthRequest="100" TextColor="{StaticResource FontColor}" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
 
-            <Label Text="NºSerie/Lote:" BackgroundColor="{StaticResource AccentColor1}"/>
+            <Label Text="NºSerie/Lote:" BackgroundColor="{StaticResource AccentColor1}" TextColor="{StaticResource MainColor}"/>
             <StackLayout Orientation="Horizontal">
-            <Entry Placeholder="Lea NumSerie/Lote" HorizontalOptions="StartAndExpand"/>
-                <Button Text="Add" HorizontalOptions="EndAndExpand" BackgroundColor="{StaticResource MainColor}"/>
+                <Entry x:Name="eNs" Placeholder="Lea NumSerie/Lote" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
+                <Button Text="Add" HorizontalOptions="EndAndExpand" BackgroundColor="{StaticResource MainColor}" BorderRadius="25" Clicked="bAdd_clicked"/>
             </StackLayout>
-            <ListView x:Name="grpNs" BackgroundColor="{StaticResource AccentColor1}"></ListView>
+            <ListView x:Name="grpNs" BackgroundColor="{StaticResource AccentColor1}" ></ListView>
             <Button HeightRequest="50" BorderRadius="35" Text="Añadir datos" BackgroundColor="{StaticResource MainColor}"></Button>
         </StackLayout>
     </ContentPage.Content>

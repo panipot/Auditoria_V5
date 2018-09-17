@@ -45,6 +45,19 @@ namespace Auditoria_V5.DATA
                 return null;
             }
         }
+        public Task<string> GetFich(string ubicacion)
+        {
+            try
+            {
+                // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
+                var g = database.ExecuteScalarAsync<string>("Select [Fichero] from [UbiNoc] where [Ubicacion]='" + ubicacion + "' group by [Fichero]");
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         public Task<int> GetNumUbicsDone(string filename)
         {

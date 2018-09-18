@@ -50,9 +50,11 @@ namespace Auditoria_V5
             }
         
 
-        private void listaserial_Clicked(object sender, EventArgs e)
+        private async void listaserial_Clicked(object sender, EventArgs e)
         {
+            auditado = (UbiNoc)((Button)sender).BindingContext;
 
+            await Navigation.PushAsync(new AudSerials(auditado));
         }
 
         private async void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

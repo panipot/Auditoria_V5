@@ -222,5 +222,12 @@ namespace Auditoria_V5.DATA
             return database.ExecuteAsync("Update [UbiNoc] set [Check]=1 where [Ubicacion]='" + ubicacion + "'");
         }
 
+        public Task<List<tNumerosSerie>> GetSerials(UbiNoc ubinoci)
+        {
+            
+            return database.Table<tNumerosSerie>().Where(i => i.Noc == ubinoci.Noc && i.Ubicacion==ubinoci.Ubicacion).ToListAsync();
+            
+        }
+        
     }
 }

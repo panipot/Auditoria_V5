@@ -60,7 +60,7 @@
                                         <Label Text="{Binding Descripcion}" FontSize="Micro" FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center" HorizontalTextAlignment="Start"/>
                                     </StackLayout>
                                     <Label Text="{Binding EstadoOp}" Grid.Column="1" FontSize="Micro" FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center"/>
-                                    <Entry x:Name="eCant" Keyboard="Numeric" Grid.Column="2" FontSize="Small" Grid.Row="0" TextColor="{StaticResource FontColor}" VerticalOptions="CenterAndExpand" Focused="eCant_Focused" Completed="Entry_Completed"/>
+                                    <Entry x:Name="eCant" Keyboard="Numeric" Text="{Binding CantReal}" Grid.Column="2" FontSize="Small" Grid.Row="0" TextColor="{StaticResource FontColor}" VerticalOptions="CenterAndExpand" Focused="eCant_Focused" Completed="Entry_Completed"/>
                                     <Button Image="list_numbered.png" Grid.Column="3"  Grid.Row="0"  IsVisible="{Binding ControlUnitario}" Clicked="listaserial_Clicked"/>
                                     <Image Source="checkOk.png" Grid.Column="4" Grid.Row="0" HorizontalOptions="End" IsVisible="{Binding Check}" />
 
@@ -71,7 +71,10 @@
 
                 </ListView>
             </ScrollView>
+            <StackLayout Orientation="Horizontal">
             <Label Text="Observaciones" TextColor="{StaticResource MainColor}"></Label>
+            <Label Text="" x:Name="lCant" FontSize="Small" TextColor="{StaticResource FontColor}" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
             <Entry x:Name="eObs" HeightRequest="75" 
                    TextColor="{StaticResource MainColor}" 
                    Placeholder="{Binding Obs}" 

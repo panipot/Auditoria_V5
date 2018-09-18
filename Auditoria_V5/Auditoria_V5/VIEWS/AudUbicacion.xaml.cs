@@ -14,7 +14,7 @@ namespace Auditoria_V5
 	public partial class AudUbicacion : ContentPage
 	{
         UbiNoc auditado = new UbiNoc();
-
+        
         public AudUbicacion ()
 		{
 			InitializeComponent ();
@@ -58,6 +58,7 @@ namespace Auditoria_V5
         private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             auditado = (UbiNoc)e.SelectedItem;
+            lCant.Text = auditado.Cantidad.ToString();
             eObs.IsEnabled = true;
             eObs.Text = auditado.Obs;
 
@@ -67,26 +68,21 @@ namespace Auditoria_V5
         {
             var texto = ((Entry)sender).Text;
             auditado = (UbiNoc)((Entry)sender).BindingContext;
-
+            
             if (auditado.Cantidad != Convert.ToDouble(texto))
 
             {
 
                 if (await DisplayAlert("", "Cantidad No concuerda, Confirmamos??", "Si", "No"))
                 {
-                    if (auditado.ControlUnitario == null)
-                    {
+
                         auditado.Error = true;
                         auditado.Check = true;
-                    }
-                    else
-                    {
-                        //ABRIMOS VERIFICACION DE SERIADOS
-                    }
 
                     auditado.CantReal = Convert.ToDouble(texto);
                     await App.Database.SaveItemAsync(auditado);
-
+                    listView.ItemsSource = null;
+                    listView.ItemsSource = await App.Database.GetUbiNoc(auditado.Ubicacion); 
 
 
                 }
@@ -98,16 +94,15 @@ namespace Auditoria_V5
             else
             {
                 auditado.Error = false;
+                auditado.Check = true;
                 auditado.CantReal = Convert.ToDouble(texto);
                 await App.Database.SaveItemAsync(auditado);
-                if (auditado.ControlUnitario != null)
-                {
-                    //ABRIMOS VERIFICACION DE SERIADOS
-                }
-
-
-
-
+                listView.ItemsSource = null;
+                listView.ItemsSource = await App.Database.GetUbiNoc(auditado.Ubicacion);
+            }
+            if (auditado.ControlUnitario != null)
+            {
+                //ABRIMOS VERIFICACION DE SERIADOS
             }
 
             //listView.SelectedItem = null;

@@ -55,10 +55,18 @@ namespace Auditoria_V5
 
         }
 
-        private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             auditado = (UbiNoc)e.SelectedItem;
-            lCant.Text = auditado.Cantidad.ToString();
+            if (auditado.ControlUnitario == null || auditado.ControlUnitario == "")
+            {
+                lCant.Text = auditado.Cantidad.ToString();
+            }
+            else
+            {
+                var a= await App.Database.GetNumsSerie(auditado);
+                lCant.Text = a.ToString();
+            }
             eObs.IsEnabled = true;
             eObs.Text = auditado.Obs;
 
@@ -68,8 +76,21 @@ namespace Auditoria_V5
         {
             var texto = ((Entry)sender).Text;
             auditado = (UbiNoc)((Entry)sender).BindingContext;
-            
-            if (auditado.Cantidad != Convert.ToDouble(texto))
+            Double CuentaNumerosSerie;
+
+            if (auditado.ControlUnitario != null)
+            {
+                var a = await App.Database.GetNumsSerie(auditado);
+                CuentaNumerosSerie = Convert.ToDouble(a);
+            }
+            else
+            {
+                CuentaNumerosSerie = 0;
+            }
+
+
+
+            if ((auditado.ControlUnitario == null && auditado.Cantidad != Convert.ToDouble(texto))|| (auditado.ControlUnitario == "L" && auditado.Cantidad != Convert.ToDouble(texto)) || (auditado.ControlUnitario == "" && auditado.Cantidad != Convert.ToDouble(texto)))
 
             {
 
@@ -93,17 +114,60 @@ namespace Auditoria_V5
             }
             else
             {
-                auditado.Error = false;
-                auditado.Check = true;
-                auditado.CantReal = Convert.ToDouble(texto);
-                await App.Database.SaveItemAsync(auditado);
-                listView.ItemsSource = null;
-                listView.ItemsSource = await App.Database.GetUbiNoc(auditado.Ubicacion);
+
+                if (auditado.ControlUnitario == null || auditado.ControlUnitario == "L" || auditado.ControlUnitario == "")
+                {
+                    auditado.Error = false;
+                    auditado.Check = true;
+                    auditado.CantReal = Convert.ToDouble(texto);
+                    await App.Database.SaveItemAsync(auditado);
+                    listView.ItemsSource = null;
+                    listView.ItemsSource = await App.Database.GetUbiNoc(auditado.Ubicacion);
+                }
+                else
+                {
+                    if (auditado.ControlUnitario!=null && auditado.ControlUnitario != "L" &&  auditado.ControlUnitario != "" && CuentaNumerosSerie != Convert.ToDouble(texto))
+                    {
+                        if (await DisplayAlert("", "Cantidad No concuerda, Confirmamos??", "Si", "No"))
+                        {
+
+                            auditado.Error = true;
+                            auditado.Check = true;
+
+                            auditado.CantReal = Convert.ToDouble(texto);
+                            await App.Database.SaveItemAsync(auditado);
+                            listView.ItemsSource = null;
+                            listView.ItemsSource = await App.Database.GetUbiNoc(auditado.Ubicacion);
+
+
+                        }
+                        else
+                        {
+                            return;
+                        }
+
+
+                    }
+                    else
+                    {
+                        auditado.Error = false;
+                        auditado.Check = true;
+                        auditado.CantReal = Convert.ToDouble(texto);
+                        await App.Database.SaveItemAsync(auditado);
+                        listView.ItemsSource = null;
+                        listView.ItemsSource = await App.Database.GetUbiNoc(auditado.Ubicacion);
+
+
+
+                    }
+
+
+
+                }
+                
+               
             }
-            if (auditado.ControlUnitario != null)
-            {
-                //ABRIMOS VERIFICACION DE SERIADOS
-            }
+            
 
             //listView.SelectedItem = null;
 

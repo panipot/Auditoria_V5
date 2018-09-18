@@ -111,6 +111,7 @@ namespace Auditoria_V5
                        
                         bool dminin;
                         DateTime Fhprob;
+                        
                         string uco = values[i][0].ToString();
                         string dsuco = values[i][1].ToString();
                         DateTime Fhaudi = DateTime.ParseExact(values[i][2].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -119,6 +120,7 @@ namespace Auditoria_V5
                         string noca = values[i][5].ToString();
                         string desca = values[i][6].ToString();
                         double canta = Convert.ToDouble(values[i][7]);
+                        
                         string estadoop = values[i][8].ToString();
                         string contunit = values[i][9].ToString();
                         string numls = values[i][10].ToString();
@@ -135,6 +137,7 @@ namespace Auditoria_V5
 
                         if (ubica!=ubi_ant || noca!=noc_ant)
                         {
+                            
                             var ubinoci = new UbiNoc
                             {
                                 Uco = uco,
@@ -185,6 +188,7 @@ namespace Auditoria_V5
                         }
                         noc_ant = noca;
                         ubi_ant = ubica;
+                        
                     }
                     
                 }

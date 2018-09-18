@@ -41,6 +41,39 @@ namespace Auditoria_V5.DATA
             }
         }
 
+        public bool ControlUnitario2 { get
+            {
+                if (ControlUnitario==null || ControlUnitario == "")
+                {
+                    return false;
+                }
+                else
+                { return true; }
+            }
+        }
+        public bool Check2
+        {
+            get
+            {
+                if (Check == true && Error == true)
+                {
+                    return false;
+                }
+                else
+                {
+                if(Check == true && Error == false)
+                    {
+                        return true;
+                    }
+                else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+        }
+
     } 
 
     public class tNumerosSerie

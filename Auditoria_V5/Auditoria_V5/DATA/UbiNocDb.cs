@@ -76,6 +76,23 @@ namespace Auditoria_V5.DATA
 
         }
 
+        public Task<int> GetNumsSerie(UbiNoc auditado)
+        {
+
+            try
+            {
+                var g = database.ExecuteScalarAsync<int>("Select Count(NOC) as Num from [tNumerosSerie] where [NOC]='" + auditado.Noc + "' and [Ubicacion]='" + auditado.Ubicacion + "'");
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+
+        }
+
         public Task<int> DeleteAudit(string filename)
         {
 

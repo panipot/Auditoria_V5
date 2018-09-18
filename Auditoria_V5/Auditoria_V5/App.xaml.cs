@@ -6,6 +6,12 @@ using Xamarin.Forms.Xaml;
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace Auditoria_V5
 {
+
+
+    // REGLAS APLICACION 
+    // LEER FICHERO DEBE ESTAR ORDENADO POR UBICACION NOC
+    // UNA UBICACION SOlO UN VALOR PARA Datamining y EST UBICACION
+
 	public partial class App : Application
 	{
 

@@ -92,9 +92,37 @@ namespace Auditoria_V5
             }
         }
 
-        private void Add_Clicked(object sender, EventArgs e)
+        private async void Add_Clicked(object sender, EventArgs e)
         {
+            //Añadir nuevo Num Serie
+            Boolean existe = false;
+            foreach (tNumerosSerie item in Lista_serial.ItemsSource)
+            {
+                if (eNewSerial.Text == item.NumSerie)
+                {
+                    existe = true;
+                }
+            }
 
+            if (existe == false)
+            {
+                
+                tNumerosSerie Nuevo = new tNumerosSerie()
+                {
+                    Ubicacion=ubinoci.Ubicacion,
+                    Noc=ubinoci.Noc,
+                    NumSerie= eNewSerial.Text,
+                    Check=true,
+                    Error=true,
+                    Fichero=ubinoci.Fichero
+                };
+                await App.Database.SaveItemAsync2(Nuevo);
+
+
+                Lista_serial.ItemsSource = null;
+                Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
+                // grpNs.PropertyChanged
+            }
         }
     }
 }

@@ -31,14 +31,13 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-
-
-
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-
-                <Button HeightRequest="50" BorderRadius="35" Text="Exit Seriados" Clicked="Fin_Clicked" BackgroundColor="{StaticResource MainColor}" HorizontalOptions="CenterAndExpand" />
-                <Button Text="Añade NS" HeightRequest="50" BorderRadius="35" Clicked="Add_Clicked" BackgroundColor="{StaticResource MainColor}" HorizontalOptions="CenterAndExpand"/>
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="eNewSerial" Placeholder="Nuevo Numero" PlaceholderColor="{StaticResource AccentColor2}" HorizontalOptions="StartAndExpand"></Entry>
+                <Button Text="Add" HeightRequest="50" BorderRadius="35" Clicked="Add_Clicked" BackgroundColor="{StaticResource MainColor}" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
+
+            <Button HeightRequest="50" BorderRadius="35" Text="Exit Seriados" Clicked="Fin_Clicked" BackgroundColor="{StaticResource MainColor}" HorizontalOptions="CenterAndExpand" WidthRequest="150"/>
+                            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -54,7 +54,12 @@ namespace Auditoria_V5
         {
             auditado = (UbiNoc)((Button)sender).BindingContext;
 
-            await Navigation.PushAsync(new AudSerials(auditado));
+            await Navigation.PushAsync(new AudSerials()
+            {
+                BindingContext = auditado
+            });
+
+            
         }
 
         private async void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

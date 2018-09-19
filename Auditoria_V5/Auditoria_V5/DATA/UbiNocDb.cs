@@ -221,6 +221,11 @@ namespace Auditoria_V5.DATA
         {
             return database.ExecuteAsync("Update [UbiNoc] set [Check]=1 where [Ubicacion]='" + ubicacion + "'");
         }
+        public Task<int> Set_Serial_Check(tNumerosSerie seriado)
+        {
+            return database.UpdateAsync(seriado);
+            //return database.ExecuteAsync("Update [tNumerosSerie] set [Check]=1 where [Ubicacion]='" + seriado.Ubicacion+ "'");
+        }
 
         public Task<List<tNumerosSerie>> GetSerials(UbiNoc ubinoci)
         {

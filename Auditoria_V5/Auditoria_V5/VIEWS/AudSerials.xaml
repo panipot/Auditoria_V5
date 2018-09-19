@@ -2,10 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Auditoria_V5.AudSerials"
-    BackgroundColor="{StaticResource BackgroundColor}" >
-
+             BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Content>
-        <StackLayout Padding="5">
+        <StackLayout Padding="5" >
             <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource  AccentColor1}">
 
                 <Label Text="NOC:" BackgroundColor="{StaticResource AccentColor1}" TextColor="{StaticResource MainColor}"/>
@@ -14,7 +13,7 @@
             </StackLayout>
 
 
-            <ListView x:Name="Lista_serial" Margin="10" Style="{StaticResource Celda}">
+            <ListView x:Name="Lista_serial" Margin="10" Style="{StaticResource Celda}" ItemSelected="Serial_Click">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

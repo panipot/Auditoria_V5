@@ -11,20 +11,21 @@ using Xamarin.Forms.Xaml;
 namespace Auditoria_V5
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AudSerials : ContentPage
-    {
-        public AudSerials(UbiNoc ubinoci)
-        {
-            this.BindingContext = ubinoci;
-            InitializeComponent();
+	public partial class AudSerials : ContentPage
+	{
+        tNumerosSerie seriado = new tNumerosSerie();
+        UbiNoc ubinoci;
+        public AudSerials ()
+		{
 
-        }
+            InitializeComponent ();
+		}
 
         protected override async void OnAppearing()
 
         {
-
-            var ubinoci = (UbiNoc)BindingContext;
+            
+            ubinoci = (UbiNoc)BindingContext;
             Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
 
             MessagingCenter.Subscribe<App, string>(this, "Barcode", (sender, arg) =>
@@ -37,34 +38,35 @@ namespace Auditoria_V5
             });
         }
 
-        private void serial_leido(string arg)
+        private async void serial_leido(string arg)
         {
             foreach (tNumerosSerie item in Lista_serial.ItemsSource)
             {
                 System.Diagnostics.Debug.WriteLine("Revisando lista en Serials_leido " + item.NumSerie);
-
-
                 if (arg.Replace("\r", "") == "21" + item.NumSerie)
-                    item.Check = true;
-                Lista_serial.SelectedItem = ((List<tNumerosSerie>)Lista_serial.ItemsSource).Where(x => x.NumSerie == arg.Replace("\r", "")).FirstOrDefault();
                 {
-                    foreach (ViewCell myViewCell in Lista_serial.TemplatedItems)
-                    {
-                        var noci = myViewCell.FindByName<Label>("lNumSerie");
-                        var ima = myViewCell.FindByName<Image>("iCheck");
-                        if (noci.Text == item.NumSerie)
-                        {
-                            // myViewCell.View.BackgroundColor= this.BackgroundColor;
 
-
-                            ima.IsVisible = true;
-                        }
-
-                    }
+                    seriado = item;
+                    item.Check = true;
+                    Lista_serial.ItemsSource = null;
+                    Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
 
                 }
             }
+        }
 
+        private async void Serial_Click(object sender, SelectedItemChangedEventArgs e)
+        {
+            seriado = (tNumerosSerie)e.SelectedItem;
+            var action = await DisplayAlert("Aviso", "Marcar el NSeriado " + seriado.NumSerie + " como encontrado.", "Si", "No");
+            if (action)
+            {
+                seriado.Check = true;
+                await App.Database.SaveItemAsync2(seriado);
+
+                Lista_serial.ItemsSource = null;
+                Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
+            }
         }
 
         private async void Fin_Clicked(object sender, EventArgs e)
@@ -81,7 +83,7 @@ namespace Auditoria_V5
 
                 foreach (tNumerosSerie item in Lista_serial.ItemsSource)
                 {
-                   // await App.Database.Set_Serial_Done(item);
+                    // await App.Database.Set_Serial_Done(item);
                 }
 
                 MessagingCenter.Unsubscribe<App, string>(this, "Barcode");

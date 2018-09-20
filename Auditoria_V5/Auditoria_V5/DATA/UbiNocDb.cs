@@ -181,7 +181,7 @@ namespace Auditoria_V5.DATA
         public Task<List<clFicheros>> GetFicheros()
         {
             
-            return database.QueryAsync<clFicheros>("select [Fichero] from [UbiNoc] group by [Fichero]");
+            return database.QueryAsync<clFicheros>("select [Fichero] from [UbiNoc] where [Fichero] is not null group by [Fichero]");
 
         }
 
@@ -204,7 +204,7 @@ namespace Auditoria_V5.DATA
             string param = auditoria.Fichero;
             //return database.QueryAsync<clUbicacion>("SELECT [Ubicacion] FROM [UbiNoc] where [Fichero]='" + param + "' group by [Ubicacion]");
 
-            return database.QueryAsync<clUbicacion>("select [Ubicacion], [Check], [EstUbicacion], [DataMining], count(NOC) as Num_nocs from UbiNOC where [Fichero] = '" + param + "' group by [Ubicacion], [Check], [EstUbicacion],[DataMining]");
+            return database.QueryAsync<clUbicacion>("select [Ubicacion], [EstUbicacion], [DataMining], count(NOC) as Num_nocs, sum([Check]) as SumCk from UbiNOC where [Fichero] = '" + param + "' group by [Ubicacion], [EstUbicacion],[DataMining]");
 
         }
         

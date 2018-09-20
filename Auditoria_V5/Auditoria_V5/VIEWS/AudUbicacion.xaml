@@ -13,7 +13,7 @@
                 <Label Text="DMining:" TextColor="{StaticResource MainColor}"></Label>
                 <Label Text="{Binding DataMining2}" TextColor="{StaticResource MainColor}"/>
                 <Label Text="Revisada:" TextColor="{StaticResource MainColor}" HorizontalOptions="EndAndExpand"/>
-                <Switch IsToggled="{Binding Check}" HorizontalOptions="EndAndExpand"/>
+                <Switch IsToggled="{Binding Check_total}" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
             <StackLayout  BackgroundColor="{StaticResource AccentColor1}">
                 <Grid>

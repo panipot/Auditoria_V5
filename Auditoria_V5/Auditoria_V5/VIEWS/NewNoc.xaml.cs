@@ -30,6 +30,8 @@ namespace Auditoria_V5
             grpNs.ItemsSource = lista;
            ubicacion = (clUbicacion)BindingContext;
             this.Title = ubicacion.Ubicacion.Substring(0, 3) + "-" + ubicacion.Ubicacion.Substring(3, 2) + "-" + ubicacion.Ubicacion.Substring(5, 2) + "-" + ubicacion.Ubicacion.Substring(7, 2) + "-" + ubicacion.Ubicacion.Substring(9, 2);
+            pTipoSeriado.Items.Add("L");
+            pTipoSeriado.Items.Add("S");
         }
 
         private async void eNoc_completed(object sender, EventArgs e)
@@ -62,7 +64,7 @@ namespace Auditoria_V5
                 grpNs.ItemsSource = lista;
                // grpNs.PropertyChanged
             }
-            
+            eNs.Text = "";
 
         }
 
@@ -94,6 +96,8 @@ namespace Auditoria_V5
             {
                 UbiNoc nocito;
                 var fich = await App.Database.GetFich(ubicacion.Ubicacion);
+                
+                UbiNoc nocito2 = await App.Database.GetFichAsync(fich);
                 nocito = new UbiNoc()
                 {
                     Noc = eNOC.Text,
@@ -105,16 +109,48 @@ namespace Auditoria_V5
                     Check = true,
                     Obs = "Nuevo NOC encontrado",
                     Fichero=fich,
-                    ControlUnitario="",
-                    EstUbicacion="2"
+                    ControlUnitario= pTipoSeriado.SelectedItem?.ToString() ?? "",
+                    EstUbicacion=ubicacion.EstUbicacion,
+                    Uco=nocito2.Uco,
+                    DsUco=nocito2.DsUco,
+                    FhAuditoria=nocito2.FhAuditoria,
+                    DataMining=ubicacion.DataMining
 
 
 
                 };
 
                 //Guardar Seriados
+
+                if (lista.Count()>0)
+                {
+                    foreach (string item in lista)
+                    {
+                        tNumerosSerie seriado = new tNumerosSerie()
+                        {
+                            Ubicacion = ubicacion.Ubicacion,
+                            Noc = nocito.Noc,
+                            NumSerie = item,
+                            Check = true,
+                            Error = true,
+                            Fichero = fich
+
+                        };
+
+                        await App.Database.SaveItemAsync2(seriado);
+
+
+                    }
+
+
+
+
+                }
+
+
+
                 await App.Database.SaveItemAsync(nocito);
-                //await Navigation.PopAsync();
+                await Navigation.PopAsync();
             }
 
 

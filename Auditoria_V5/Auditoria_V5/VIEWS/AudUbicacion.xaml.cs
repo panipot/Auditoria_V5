@@ -72,7 +72,7 @@ namespace Auditoria_V5
             else
             {
                 var a= await App.Database.GetNumsSerie(auditado);
-                lCant.Text = a.ToString();
+                lCant.Text = a.ToString()+"/"+ auditado.Cantidad.ToString();
             }
             eObs.IsEnabled = true;
             eObs.Text = auditado.Obs;

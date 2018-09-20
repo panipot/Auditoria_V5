@@ -167,10 +167,22 @@ namespace Auditoria_V5.DATA
 
         }
         public bool Check { get; set; }
+        
+        public int SumCk { get; set; }
         public int Num_nocs
         {
             get; set;
 
+        }
+        public bool Check_total
+        {
+            get
+            {
+                if (Num_nocs == SumCk)
+                { return true; }
+                else
+                { return false; }
+            }
         }
         public string EstUbicacion
         {

@@ -58,14 +58,29 @@ namespace Auditoria_V5
         private async void Serial_Click(object sender, SelectedItemChangedEventArgs e)
         {
             seriado = (tNumerosSerie)e.SelectedItem;
-            var action = await DisplayAlert("Aviso", "Marcar el NSeriado " + seriado.NumSerie + " como encontrado.", "Si", "No");
-            if (action)
+            if (seriado.Check == false)
             {
-                seriado.Check = true;
-                await App.Database.SaveItemAsync2(seriado);
+                var action = await DisplayAlert("Aviso", "Marcar el NSeriado " + seriado.NumSerie + " como encontrado.", "Si", "No");
+                if (action)
+                {
+                    seriado.Check = true;
+                    await App.Database.SaveItemAsync2(seriado);
 
-                Lista_serial.ItemsSource = null;
-                Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
+                    Lista_serial.ItemsSource = null;
+                    Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
+                }
+            }
+            else
+            {
+                var action = await DisplayAlert("Aviso", "DesMarcar el NSeriado " + seriado.NumSerie + " como encontrado.", "Si", "No");
+                if (action)
+                {
+                    seriado.Check = false;
+                    await App.Database.SaveItemAsync2(seriado);
+
+                    Lista_serial.ItemsSource = null;
+                    Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
+                }
             }
         }
 

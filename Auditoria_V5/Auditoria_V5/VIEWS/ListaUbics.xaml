@@ -17,7 +17,7 @@
                                 <Label Text="{Binding Num_nocs}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
                                 <!--<Label Text="{Binding Noc}" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />-->
                                 <Image Source="check.png"  IsVisible="{Binding Error}" />
-                                <Image Source="checkOk.png" HorizontalOptions="End" IsVisible="{Binding Check}" />
+                                <Image Source="checkOk.png" HorizontalOptions="End" IsVisible="{Binding Check_total}" />
                             </StackLayout>
 
 

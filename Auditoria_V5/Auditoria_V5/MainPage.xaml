@@ -17,9 +17,9 @@
         <Label TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource BackgroundColor}" FontSize="Large" HorizontalOptions="CenterAndExpand" >Auditorias v4</Label>
 
         <StackLayout Orientation="Vertical">
-            <Button x:Name="btnNueva" Text="Nueva Auditoria" BorderRadius="30" Clicked="onBtnStart" HeightRequest="80" WidthRequest="150" BackgroundColor="{StaticResource MainColor}"/>
-            <Button x:Name="btnContinua" Text="Continuar Auditoria" BorderRadius="30" Clicked="onBtnContinue" HeightRequest="80" WidthRequest="150" IsEnabled="False" BackgroundColor="{StaticResource MainColor}"/>
-
+            <Button x:Name="btnNueva" Text="Nueva Auditoria" BorderRadius="30" Clicked="onBtnStart" HeightRequest="60" WidthRequest="150" BackgroundColor="{StaticResource MainColor}"/>
+            <Button x:Name="btnContinua" Text="Continuar Auditoria" BorderRadius="30" Clicked="onBtnContinue" HeightRequest="60" WidthRequest="150" IsEnabled="False" BackgroundColor="{StaticResource MainColor}"/>
+            <Button Text="Resultados" BorderRadius="30" Clicked="onResults" HeightRequest="60" WidthRequest="150" BackgroundColor="{StaticResource MainColor}"/>
         </StackLayout>
     </StackLayout>
 

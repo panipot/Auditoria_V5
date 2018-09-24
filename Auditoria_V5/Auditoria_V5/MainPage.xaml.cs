@@ -48,5 +48,10 @@ namespace Auditoria_V5
         {
             await Navigation.PushAsync(new ListaAuditorias());
         }
+
+        private async void onResults(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Resultados());
+        }
     }
 }

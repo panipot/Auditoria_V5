@@ -28,6 +28,7 @@ namespace Auditoria_V5
                     if (esta2.Ubicacion != null)
                     {
                         btnContinua.IsEnabled = true;
+                        btnResults.IsEnabled = true;
                     }
 
                 }

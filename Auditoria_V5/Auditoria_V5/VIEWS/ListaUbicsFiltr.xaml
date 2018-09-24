@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Auditoria_V5.ListaUbicsFiltr" Title="ListaUbicsFiltr"
+            BackgroundColor="{StaticResource BackgroundColor}" >
+
+
+    <ScrollView>
+        <StackLayout Padding="5">
+
+            <ListView x:Name="listView" Margin="10" ItemSelected="OnListItemSelected" Style="{StaticResource Celda}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="10,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Ubicacion}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
+                                <Label Text="{Binding Num_nocs}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
+                                <!--<Label Text="{Binding Noc}" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />-->
+                                <Image Source="check.png"  IsVisible="{Binding Error}" />
+                                <Image Source="checkOk.png" HorizontalOptions="End" IsVisible="{Binding Check_total}" />
+                            </StackLayout>
+
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

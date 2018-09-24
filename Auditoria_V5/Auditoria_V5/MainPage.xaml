@@ -8,8 +8,8 @@
         <!-- Place new controls here -->
 
         <Image 
-           Source="almacen21.png" HeightRequest="300"
-            WidthRequest="300"
+           Source="almacen21.png" HeightRequest="280"
+            WidthRequest="280"
             Aspect="Fill"
             
             />
@@ -19,7 +19,7 @@
         <StackLayout Orientation="Vertical">
             <Button x:Name="btnNueva" Text="Nueva Auditoria" BorderRadius="30" Clicked="onBtnStart" HeightRequest="60" WidthRequest="150" BackgroundColor="{StaticResource MainColor}"/>
             <Button x:Name="btnContinua" Text="Continuar Auditoria" BorderRadius="30" Clicked="onBtnContinue" HeightRequest="60" WidthRequest="150" IsEnabled="False" BackgroundColor="{StaticResource MainColor}"/>
-            <Button Text="Resultados" BorderRadius="30" Clicked="onResults" HeightRequest="60" WidthRequest="150" BackgroundColor="{StaticResource MainColor}"/>
+            <Button x:Name="btnResults" Text="Resultados" BorderRadius="30" Clicked="onResults" HeightRequest="60" WidthRequest="150" BackgroundColor="{StaticResource MainColor}" IsEnabled="False"/>
         </StackLayout>
     </StackLayout>
 

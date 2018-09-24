@@ -135,14 +135,11 @@ namespace Auditoria_V5
 
 
 
-            for (int i = 0; i <= lista2.Count - 1; i++)
-            {
-                await Navigation.PushAsync(
-                    new AudUbicacion()
-                    {
-                        BindingContext = lista2[i] as clUbicacion
-                    });
-            }
+            //for (int i = 0; i <= lista2.Count - 1; i++)
+            //{
+            await Navigation.PushAsync(new ListaUbicsFiltr(lista2));
+                 
+            //}
 
 
 

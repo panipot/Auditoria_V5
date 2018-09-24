@@ -34,14 +34,7 @@ namespace Auditoria_V5
             lista = await arch.Rellena_lista_ubics(auditoria);
 
 
-            for (int i = 0; i <= lista.Count - 1; i++)
-            {
-                await Navigation.PushAsync(
-                    new AudUbicacion()
-                    {
-                        BindingContext = lista[i] as clUbicacion
-                    });
-            }
+            await Navigation.PushAsync(new ListaUbicsFiltr(lista));
         }
 
         private void Export_Clicked(object sender, EventArgs e)

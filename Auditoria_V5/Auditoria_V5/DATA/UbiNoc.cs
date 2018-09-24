@@ -123,6 +123,7 @@ namespace Auditoria_V5.DATA
         }
         public int comprobados
         {
+            //Comprobados son los registros Ubi/Noc que tiene check=true
             get
             {
                 var a = App.Database.GetNumUbicsDone(Fichero);
@@ -131,6 +132,7 @@ namespace Auditoria_V5.DATA
         }
         public int num_reg_totales
         {
+            //Registros ubi/NOc
             get
             {
                 var a = App.Database.GetNumRegs(Fichero);
@@ -139,13 +141,51 @@ namespace Auditoria_V5.DATA
         }
         public int num_ubicaciones
         {
+            // numero de ubicaciones distintas
             get
             {
                 var a = App.Database.GetNumUbics(Fichero);
                 return a.Result;
             }
         }
-        
+
+        public int num_nocs
+        {
+            get
+            {
+                var a = App.Database.GetNumNocs(Fichero);
+                return a.Result; 
+           
+            }
+        }
+        public int num_reg_error {
+            get
+            {
+                var a = App.Database.GetNumRegs(Fichero);
+                return a.Result;
+            }
+        }
+        public int num_seriados {
+            get
+            {
+                var a = App.Database.GetCuentaNS_fich(Fichero);
+                return a.Result;
+            }
+        }
+
+
+        public int num_seriados_error
+        {
+            get
+            {
+                var a = App.Database.GetCuentaNSErr_fich(Fichero);
+                return a.Result;
+            }
+        }
+
+
+
+
     }
 
     public class clUbicacion

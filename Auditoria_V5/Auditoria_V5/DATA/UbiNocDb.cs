@@ -45,6 +45,20 @@ namespace Auditoria_V5.DATA
                 return null;
             }
         }
+        public Task<int> GetNumNocs(string filename)
+        {
+            try
+            {
+                // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
+                var g = database.ExecuteScalarAsync<int>("Select Count(DISTINCT Noc)  from [UbiNoc] where [Fichero]='" + filename + "'");
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public Task<string> GetFich(string ubicacion)
         {
             try
@@ -82,6 +96,39 @@ namespace Auditoria_V5.DATA
             try
             {
                 var g = database.ExecuteScalarAsync<int>("Select Count(NOC) as Num from [tNumerosSerie] where [NOC]='" + auditado.Noc + "' and [Ubicacion]='" + auditado.Ubicacion + "'");
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+
+        }
+
+        public Task<int> GetCuentaNS_fich( string Fichero )
+        {
+
+            try
+            {
+                var g = database.ExecuteScalarAsync<int>("Select Count(NOC) as Num from [tNumerosSerie] where [Fichero]='" + Fichero + "'");
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+
+        }
+        public Task<int> GetCuentaNSErr_fich(string Fichero)
+        {
+
+            try
+            {
+                var g = database.ExecuteScalarAsync<int>("Select Count(NOC) as Num from [tNumerosSerie] where [Fichero]='" + Fichero + "' and Error=true;");
                 return g;
             }
             catch
@@ -191,6 +238,19 @@ namespace Auditoria_V5.DATA
             {
                 // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
                 var g = database.ExecuteScalarAsync<int>("Select Count(Ubicacion) as Num from [UbiNoc] where [Ubicacion]='" + ubicacion + "' and [Error]<>0");
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public Task<int> GetErrorRegs(string fichero)
+        {
+            try
+            {
+                // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
+                var g = database.ExecuteScalarAsync<int>("Select Count(Ubicacion) as num_reg_error from [UbiNoc] where [Fichero]='" + fichero + "' and [Error]<>0");
                 return g;
             }
             catch

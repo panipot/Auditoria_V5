@@ -5,13 +5,15 @@
              BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Content>
         <StackLayout Padding="5">
-            <ListView x:Name="Lista_resultados">
+            <ListView x:Name="Lista_resultados" Style="{StaticResource Celda}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
+                        <ViewCell >
 
-                            <Grid  HorizontalOptions="Start">
+                            <Grid  HorizontalOptions="Start" >
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -22,15 +24,16 @@
                                     <ColumnDefinition Width="*"/>
                                  
                                 </Grid.ColumnDefinitions>
-                                <Label Text="{Binding Fichero}"  Grid.Column="0"  TextColor="{StaticResource FontColor}"/>
-                                <Label Text="{Binding Almacen}"   Grid.Column="1" TextColor="{StaticResource FontColor}" />
-                                <Label Text="{Binding comprobados}" Grid.Column="2" TextColor="{StaticResource FontColor}" />
-                                <Label Text="{Binding num_reg_totales}"  Grid.Column="3" TextColor="{StaticResource FontColor}"/>
-                                <Label Text="{Binding num_ubicaciones}" Grid.Column="4" TextColor="{StaticResource FontColor}" />
-                                <Label Text="{Binding num_nocs}" Grid.Column="5" TextColor="{StaticResource FontColor}" />
-                                <Label Text="{Binding num_reg_error}" Grid.Column="6" TextColor="{StaticResource FontColor}" />
-                                <Label Text="{Binding num_seriados}" Grid.Column="7" TextColor="{StaticResource FontColor}" />
-                                <!--<--><!--Label Text="{Binding num_seriados_error}" TextColor="{StaticResource FontColor}" />-->
+                                <!--<Label Text="{Binding Fichero}"  Grid.Column="0"  TextColor="{StaticResource FontColor}" FontSize="Micro"/>-->
+                                <Label Text="{Binding Almacen}"   Grid.Column="1" TextColor="{StaticResource FontColor}" FontSize="Default" />
+                                <Label Text="{Binding comprobados}" Grid.Column="2" TextColor="{StaticResource FontColor}" FontSize="Default"  />
+                                <Label Text="{Binding num_reg_totales}"  Grid.Column="3" TextColor="{StaticResource FontColor}" FontSize="Default" />
+                                <Label Text="{Binding num_ubicaciones}" Grid.Column="4" TextColor="{StaticResource FontColor}" FontSize="Default" />
+                                <Label Text="{Binding num_nocs}" Grid.Column="5" TextColor="{StaticResource FontColor}" FontSize="Default" />
+                                <Label Text="{Binding num_reg_error}" Grid.Column="6" TextColor="{StaticResource FontColor}" FontSize="Default"  />
+                                <Label Text="{Binding num_seriados}" Grid.Column="7" TextColor="{StaticResource FontColor}" FontSize="Default" />
+                                <Label Text="{Binding num_seriados_error}" Grid.Column="8" TextColor="{StaticResource FontColor}" FontSize="Default"  />
+                                <Label Text="{Binding num_ubics_error}" Grid.Column="9" TextColor="{StaticResource FontColor}" FontSize="Default"  />
 
                             </Grid>
 

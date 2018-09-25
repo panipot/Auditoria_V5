@@ -149,6 +149,14 @@ namespace Auditoria_V5.DATA
             }
         }
 
+        public int num_ubics_error {
+            get
+            {
+                var a = App.Database.GetErrorUbi2(Fichero);
+                return a.Result;
+            }
+                }
+
         public int num_nocs
         {
             get

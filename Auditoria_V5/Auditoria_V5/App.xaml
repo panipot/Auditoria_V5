@@ -11,6 +11,7 @@
 
         <Style x:Key="Celda" TargetType="ListView">
             <Setter Property="SeparatorColor" Value="#fcfff5"/>
+
         </Style>
     </Application.Resources>
 </Application>

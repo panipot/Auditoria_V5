@@ -128,7 +128,7 @@ namespace Auditoria_V5.DATA
 
             try
             {
-                var g = database.ExecuteScalarAsync<int>("Select Count(NOC) as Num from [tNumerosSerie] where [Fichero]='" + Fichero + "' and Error=true;");
+                var g = database.ExecuteScalarAsync<int>("Select Count(NOC) as Num_error from [tNumerosSerie] where [Fichero]='" + Fichero + "' and Error=1;");
                 return g;
             }
             catch
@@ -238,6 +238,19 @@ namespace Auditoria_V5.DATA
             {
                 // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
                 var g = database.ExecuteScalarAsync<int>("Select Count(Ubicacion) as Num from [UbiNoc] where [Ubicacion]='" + ubicacion + "' and [Error]<>0");
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public Task<int> GetErrorUbi2(string fichero)
+        {
+            try
+            {
+                // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
+                var g = database.ExecuteScalarAsync<int>("Select Count(DISTINCT Ubicacion) as Num from [UbiNoc] where [Fichero]='" + fichero + "' and [Error]<>0");
                 return g;
             }
             catch

@@ -156,7 +156,7 @@ namespace Auditoria_V5
                                 Obs = obs
                             };
                             await App.Database.SaveItemAsync(ubinoci);
-                            if (contunit != null)
+                            if (contunit != null && contunit != "")
                             {
                                 var numseri = new tNumerosSerie
                                 {
@@ -173,7 +173,7 @@ namespace Auditoria_V5
                         }
                         else
                         {
-                            if (contunit != null)
+                            if (contunit != null && contunit != "")
                             {
                                 var numseri = new tNumerosSerie
                                 {

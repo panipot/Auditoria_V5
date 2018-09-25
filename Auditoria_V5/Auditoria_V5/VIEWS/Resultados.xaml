@@ -2,16 +2,54 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Auditoria_V5.Resultados"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Content>
         <StackLayout Padding="5">
-            <ListView x:Name="Lista_resultados" Style="{StaticResource Celda}">
+            <ListView x:Name="Lista_resultados" Style="{StaticResource Celda}" ItemSelected="Almacen_clicked">
+
+                <ListView.Header >
+                    <Grid BackgroundColor="{StaticResource AccentColor1}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        
+                            <Label Text="Almac." Grid.Column="0"  FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                       
+                        
+                        <Label Text="Reg.Audit"  Grid.Column="1"  FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center" HorizontalTextAlignment="End"/>
+                        <Label Text="Tot. Reg."  Grid.Column="2" FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                        <Label Text="Reg_Err"  Grid.Column="3" FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                        <Label Text="Tot. Ubics."  Grid.Column="4" FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                        <Label Text="Ubics_Err"  Grid.Column="5" FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                        <Label Text="NSerie"  Grid.Column="6" FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                        <Label Text="NS_Err"  Grid.Column="7" FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+                        <Label Text="NOC"  Grid.Column="8" FontSize="Micro" TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource AccentColor1}" VerticalOptions="Center"/>
+
+
+
+
+
+
+                    </Grid>
+                </ListView.Header>
+                
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell >
 
-                            <Grid  HorizontalOptions="Start" >
+                            <Grid   HorizontalOptions="FillAndExpand" ColumnSpacing="0" >
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"  />
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -20,20 +58,38 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    
                                  
                                 </Grid.ColumnDefinitions>
                                 <!--<Label Text="{Binding Fichero}"  Grid.Column="0"  TextColor="{StaticResource FontColor}" FontSize="Micro"/>-->
-                                <Label Text="{Binding Almacen}"   Grid.Column="1" TextColor="{StaticResource FontColor}" FontSize="Default" />
-                                <Label Text="{Binding comprobados}" Grid.Column="2" TextColor="{StaticResource FontColor}" FontSize="Default"  />
-                                <Label Text="{Binding num_reg_totales}"  Grid.Column="3" TextColor="{StaticResource FontColor}" FontSize="Default" />
-                                <Label Text="{Binding num_ubicaciones}" Grid.Column="4" TextColor="{StaticResource FontColor}" FontSize="Default" />
-                                <Label Text="{Binding num_nocs}" Grid.Column="5" TextColor="{StaticResource FontColor}" FontSize="Default" />
-                                <Label Text="{Binding num_reg_error}" Grid.Column="6" TextColor="{StaticResource FontColor}" FontSize="Default"  />
-                                <Label Text="{Binding num_seriados}" Grid.Column="7" TextColor="{StaticResource FontColor}" FontSize="Default" />
-                                <Label Text="{Binding num_seriados_error}" Grid.Column="8" TextColor="{StaticResource FontColor}" FontSize="Default"  />
-                                <Label Text="{Binding num_ubics_error}" Grid.Column="9" TextColor="{StaticResource FontColor}" FontSize="Default"  />
+                                <Frame Grid.Column="0" Padding="5" BorderColor="{StaticResource AccentColor1}" BackgroundColor="Transparent">
+                                    <Label Text="{Binding Almacen}"    FontSize="Default" TextColor="{StaticResource FontColor}"/>
+                                </Frame>
+                                <Frame Grid.Column="1" Padding="5"  BorderColor="{StaticResource AccentColor1}" BackgroundColor="Transparent">
+                                    <Label Text="{Binding comprobados}"  HorizontalTextAlignment="Center" TextColor="{StaticResource FontColor}" FontSize="Default"  />
+                                </Frame>
+                                <Frame Grid.Column="2" Padding="5"  BorderColor="{StaticResource AccentColor1}" BackgroundColor="Transparent">
+                                    <Label Text="{Binding num_reg_totales}"  HorizontalTextAlignment="Center"  Grid.Column="2" TextColor="{StaticResource FontColor}" FontSize="Default" />
+                                </Frame>
+                                <Frame Grid.Column="3" Padding="5"  BorderColor="{StaticResource AccentColor1}" BackgroundColor="Transparent">
+                                    <Label Text="{Binding num_reg_error}"  HorizontalTextAlignment="Center" Grid.Column="3" TextColor="{StaticResource FontColor}" FontSize="Default"  />
+                                </Frame>
+                                <Frame Grid.Column="4" Padding="5"  BorderColor="{StaticResource AccentColor1}" BackgroundColor="Transparent">
+                                    <Label Text="{Binding num_ubicaciones}"  HorizontalTextAlignment="Center" Grid.Column="4" TextColor="{StaticResource FontColor}" FontSize="Default" />
+                                </Frame>
+                                <Frame Grid.Column="5" Padding="5"  BorderColor="{StaticResource AccentColor1}" BackgroundColor="Transparent">
+                                    <Label Text="{Binding num_ubics_error}" Grid.Column="5"  HorizontalTextAlignment="Center" TextColor="{StaticResource FontColor}" FontSize="Default"  />
+                                </Frame>
+                                <Frame Grid.Column="6" Padding="5"  BorderColor="{StaticResource AccentColor1}" BackgroundColor="Transparent">
+                                    <Label Text="{Binding num_seriados}" Grid.Column="6"  HorizontalTextAlignment="Center" TextColor="{StaticResource FontColor}" FontSize="Default" />
+                                </Frame>
+                                <Frame Grid.Column="7" Padding="5"  BorderColor="{StaticResource AccentColor1}" BackgroundColor="Transparent">
+                                    <Label Text="{Binding num_seriados_error}" Grid.Column="7"  HorizontalTextAlignment="Center" TextColor="{StaticResource FontColor}" FontSize="Default"  />
+                                </Frame>
+                                <Frame Grid.Column="8" Padding="5"  BorderColor="{StaticResource AccentColor1}" BackgroundColor="Transparent">
+                                    <Label Text="{Binding num_nocs}" Grid.Column="8"   HorizontalTextAlignment="Center" TextColor="{StaticResource FontColor}" FontSize="Default" />
+                                </Frame>
+
 
                             </Grid>
 
@@ -42,6 +98,14 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <StackLayout BackgroundColor="{StaticResource BackgroundColor}" HeightRequest="250"  VerticalOptions="Start">
+                <Label Text="Resultados" TextColor="{StaticResource FontColor}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                <forms:ChartView x:Name="MyBarChart" HeightRequest="250" BackgroundColor="Black"/>
+
+            </StackLayout>
+
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

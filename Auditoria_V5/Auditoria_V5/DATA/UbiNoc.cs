@@ -161,7 +161,7 @@ namespace Auditoria_V5.DATA
         public int num_reg_error {
             get
             {
-                var a = App.Database.GetNumRegs(Fichero);
+                var a = App.Database.GetErrorRegs(Fichero);
                 return a.Result;
             }
         }

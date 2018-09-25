@@ -11,16 +11,26 @@
                         <ViewCell>
 
                             <Grid  HorizontalOptions="Start">
-
-                                <Label Text="{Binding Fichero}"    TextColor="{StaticResource FontColor}"/>
-                                <Label Text="{Binding Almacen}"    TextColor="{StaticResource FontColor}" />
-                                <Label Text="{Binding comprobados}" TextColor="{StaticResource FontColor}" />
-                                <Label Text="{Binding num_reg_totales}"  TextColor="{StaticResource FontColor}"/>
-                                <Label Text="{Binding num_ubicaciones}" TextColor="{StaticResource FontColor}" />
-                                <Label Text="{Binding num_nocs}" TextColor="{StaticResource FontColor}" />
-                                <Label Text="{Binding num_reg_error}" TextColor="{StaticResource FontColor}" />
-                                <Label Text="{Binding num_seriados}" TextColor="{StaticResource FontColor}" />
-                                <Label Text="{Binding num_seriados_error}" TextColor="{StaticResource FontColor}" />
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                 
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Fichero}"  Grid.Column="0"  TextColor="{StaticResource FontColor}"/>
+                                <Label Text="{Binding Almacen}"   Grid.Column="1" TextColor="{StaticResource FontColor}" />
+                                <Label Text="{Binding comprobados}" Grid.Column="2" TextColor="{StaticResource FontColor}" />
+                                <Label Text="{Binding num_reg_totales}"  Grid.Column="3" TextColor="{StaticResource FontColor}"/>
+                                <Label Text="{Binding num_ubicaciones}" Grid.Column="4" TextColor="{StaticResource FontColor}" />
+                                <Label Text="{Binding num_nocs}" Grid.Column="5" TextColor="{StaticResource FontColor}" />
+                                <Label Text="{Binding num_reg_error}" Grid.Column="6" TextColor="{StaticResource FontColor}" />
+                                <Label Text="{Binding num_seriados}" Grid.Column="7" TextColor="{StaticResource FontColor}" />
+                                <!--<--><!--Label Text="{Binding num_seriados_error}" TextColor="{StaticResource FontColor}" />-->
 
                             </Grid>
 

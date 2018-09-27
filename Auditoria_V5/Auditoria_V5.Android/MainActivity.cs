@@ -19,6 +19,10 @@ namespace Auditoria_V5.Droid
         public static BluetoothSocket BthSocket = null;
 
         const int RequestResolveError = 1000;
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        {
+            Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
 
         protected override void OnCreate(Bundle bundle)
         {

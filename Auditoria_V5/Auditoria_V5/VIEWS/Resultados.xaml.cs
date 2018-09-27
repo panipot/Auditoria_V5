@@ -16,28 +16,7 @@ namespace Auditoria_V5
 	{
         ClAuditoria2 auditoria = new ClAuditoria2();
 
-        //private readonly List<Microcharts.Entry> _entries = new List<Microcharts.Entry>()
-        //{
-        //    new Microcharts.Entry(200)
-        //    {
-        //        Label = "January",
-        //        ValueLabel = "200",
-        //        Color = SKColor.Parse("#FF0033"),
-        //    },
-        //    new Microcharts.Entry(400)
-        //    {
-        //        Label = "February",
-        //        ValueLabel = "400",
-        //        Color = SKColor.Parse("#FF8000"),
-        //    },
-        //    new Microcharts.Entry(300)
-        //    {
-        //        Label = "March",
-        //        ValueLabel = "300",
-        //        Color = SKColor.Parse("#FFE600"),
-        //    },
-          
-        //};
+       
 
 
 
@@ -104,6 +83,7 @@ namespace Auditoria_V5
                     Color = SKColor.Parse("#1AB34D"),
                     
                 },
+                
             };
 
             MyBarChart.Chart = new BarChart { Entries = entradas };

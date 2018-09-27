@@ -48,24 +48,31 @@ namespace Auditoria_V5
 
         private void bAdd_clicked(object sender, EventArgs e)
         {
+
             Boolean existe = false;
-            foreach (string item in lista)
+            if (eNs.Text == null || eNs.Text == "")
             {
-                if (eNs.Text==item)
+                return;
+            }
+            else
+            {
+                foreach (string item in lista)
                 {
-                    existe = true;
+                    if (eNs.Text == item)
+                    {
+                        existe = true;
+                    }
                 }
-            }
 
-            if (existe == false)
-            {
-                lista.Add(eNs.Text);
-                grpNs.ItemsSource = null;
-                grpNs.ItemsSource = lista;
-               // grpNs.PropertyChanged
+                if (existe == false)
+                {
+                    lista.Add(eNs.Text);
+                    grpNs.ItemsSource = null;
+                    grpNs.ItemsSource = lista;
+                    // grpNs.PropertyChanged
+                }
+                eNs.Text = "";
             }
-            eNs.Text = "";
-
         }
 
         private async void grpNs_ItemTapped(object sender, ItemTappedEventArgs e)

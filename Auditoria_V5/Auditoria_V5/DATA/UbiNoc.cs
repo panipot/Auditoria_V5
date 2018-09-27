@@ -115,10 +115,10 @@ namespace Auditoria_V5.DATA
                 var a =  (App.Database.IsCompleted(Fichero));
                 if (a.Result > 0)
                 {
-                    return true;
+                    return false;
                 }
                 else
-                { return false; }
+                { return true; }
             }
         }
         public int comprobados

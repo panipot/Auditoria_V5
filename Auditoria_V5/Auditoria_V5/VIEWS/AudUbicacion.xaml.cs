@@ -183,7 +183,9 @@ namespace Auditoria_V5
         private async void Fin_Clicked(object sender, EventArgs e)
         {
             clUbicacion ubicacion = (clUbicacion)BindingContext;
+            List<UbiNoc> milista = await App.Database.GetUbiNoc(ubicacion.Ubicacion);
             var action = await DisplayAlert("Aviso", "La ubicacion: " + ubicacion.Ubicacion + " Se marcará como finalizada, ¿Seguro?", "Si", "No");
+            
             if (!action)
             {
                 //await Navigation.PushAsync(new MainPage());
@@ -191,6 +193,19 @@ namespace Auditoria_V5
             }
             else
             {
+                //Si queremos marcar como error todas aquellas que no se han revisado una a una
+                //foreach (UbiNoc item in milista)
+                //{
+
+                //    if(item.Check==false && item.CantReal==0)
+                //    {
+                //        await App.Database.Set_UbiNoc_eror(item);
+                //    }
+
+
+                //}
+
+
                 await App.Database.Set_Ubi_Done(ubicacion.Ubicacion);
                 await Navigation.PopAsync();
             }

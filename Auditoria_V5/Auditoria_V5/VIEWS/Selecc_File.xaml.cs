@@ -98,6 +98,7 @@ namespace Auditoria_V5
             string ubica = "";
             try
             {
+                fileListView.IsRefreshing = true;
                 string texte = fileHelper.ReadText(filenam);
                 string[] lines = texte.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.None);
                 string[][] values = lines.Select(line => line.Split(new string[] { ";" }, StringSplitOptions.None)).ToArray();
@@ -193,9 +194,9 @@ namespace Auditoria_V5
                     
                 }
                 await DisplayAlert("Fichero procesado", "Se han leido " + (lines.Length).ToString() + " registros", "OK");
-            
+                fileListView.IsRefreshing = false;
 
-                
+
                 var audi = new ClAuditoria2
                 {
                     Fichero = filenam,

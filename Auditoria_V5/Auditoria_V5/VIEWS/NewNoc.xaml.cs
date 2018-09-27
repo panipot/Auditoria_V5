@@ -162,5 +162,10 @@ namespace Auditoria_V5
 
 
         }
+
+        private async void FotoNoc(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CamaraView());
+        }
     }
 }

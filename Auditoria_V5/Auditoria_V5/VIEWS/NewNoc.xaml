@@ -21,7 +21,11 @@
                 <Button Text="Add" HorizontalOptions="EndAndExpand" BackgroundColor="{StaticResource MainColor}" BorderRadius="25" Clicked="bAdd_clicked"/>
             </StackLayout>
             <ListView x:Name="grpNs" BackgroundColor="{StaticResource AccentColor1}" ItemTapped="grpNs_ItemTapped"></ListView>
-            <Button HeightRequest="50" BorderRadius="35" Text="Añadir datos" BackgroundColor="{StaticResource MainColor}" Clicked="bFin_clicked"></Button>
+
+            <StackLayout Orientation="Horizontal">
+                <Button HeightRequest="50" BorderRadius="35" Text="Añadir datos" BackgroundColor="{StaticResource MainColor}" Clicked="bFin_clicked" HorizontalOptions="StartAndExpand"/>
+                <Button HeightRequest="50" BorderRadius="35" Text="Incluir Foto" BackgroundColor="{StaticResource MainColor}" Clicked="FotoNoc" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -54,5 +54,7 @@ namespace Auditoria_V5
         {
             await Navigation.PushAsync(new Resultados());
         }
+
+        
     }
 }

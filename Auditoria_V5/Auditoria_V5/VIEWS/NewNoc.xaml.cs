@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +15,8 @@ namespace Auditoria_V5
 	{
         List<string> lista = new List<string>();
         clUbicacion ubicacion;
+        private MediaFile Foto;
+        string RutaFoto;
 
         public NewNoc ()
 		{
@@ -165,7 +167,40 @@ namespace Auditoria_V5
 
         private async void FotoNoc(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CamaraView());
+            if (eNOC.Text != null && eNOC.Text != "")
+            {
+                string nuevo_noc = ubicacion.Ubicacion + "_" + eNOC.Text + ".jpg";
+            //await Navigation.PushAsync(new CamaraView());
+            await TomarFotoAsync(nuevo_noc);
+            }
+            else
+            {
+                await DisplayAlert("Alert", "Introduzca primero el NOC", "OK");
+            }
+
+
         }
+
+        public async Task<bool> TomarFotoAsync(string nombrefoto)
+        {
+            int nErrores = 0;
+            try
+            {
+                Foto = await ServicioFoto.Instancia.CapturarFotoAsync(nombrefoto);
+                if (Foto != null)
+                {
+                    RutaFoto = Foto.Path;
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                nErrores++;
+            }
+            return (nErrores == 0);
+        }
+
+
+
     }
 }

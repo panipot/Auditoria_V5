@@ -53,7 +53,7 @@ namespace Auditoria_V5
             return foto;
         }
 
-        public async Task<MediaFile> CapturarFotoAsync()
+        public async Task<MediaFile> CapturarFotoAsync(string nombrefoto)
         {
             MediaFile foto = null;
             try
@@ -64,7 +64,14 @@ namespace Auditoria_V5
                 }
                 else
                 {
-                    foto = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions());
+                    foto = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
+                    {
+                        SaveToAlbum=true,
+                        Directory = "Download",
+                        Name = nombrefoto,
+                    }
+                        
+                        );
                 }
 
             }

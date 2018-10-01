@@ -40,22 +40,32 @@ namespace Auditoria_V5
 
         private async void serial_leido(string arg)
         {
-            foreach (tNumerosSerie item in Lista_serial.ItemsSource)
+            if (eNewSerial.IsFocused)
             {
-                System.Diagnostics.Debug.WriteLine("Revisando lista en Serials_leido " + item.NumSerie);
-                if (arg.Replace("\r", "") == "21" + item.NumSerie)
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-
-                    seriado = item;
-                    item.Check = true;
-                    seriado.Check = true;
-                    await App.Database.SaveItemAsync2(seriado);
-                    Device.BeginInvokeOnMainThread(async () =>
+                    eNewSerial.Text = arg.Replace("\r", "").Substring(2);
+                });
+            }
+            else
+            {
+                foreach (tNumerosSerie item in Lista_serial.ItemsSource)
+                {
+                    System.Diagnostics.Debug.WriteLine("Revisando lista en Serials_leido " + item.NumSerie);
+                    if (arg.Replace("\r", "") == "21" + item.NumSerie)
                     {
-                        
-                        Lista_serial.ItemsSource = null;
-                        Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
-                    });
+
+                        seriado = item;
+                        item.Check = true;
+                        seriado.Check = true;
+                        await App.Database.SaveItemAsync2(seriado);
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+
+                            Lista_serial.ItemsSource = null;
+                            Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
+                        });
+                    }
                 }
             }
         }
@@ -144,5 +154,7 @@ namespace Auditoria_V5
                 // grpNs.PropertyChanged
             }
         }
+
+        
     }
 }

@@ -34,6 +34,40 @@ namespace Auditoria_V5
             this.Title = ubicacion.Ubicacion.Substring(0, 3) + "-" + ubicacion.Ubicacion.Substring(3, 2) + "-" + ubicacion.Ubicacion.Substring(5, 2) + "-" + ubicacion.Ubicacion.Substring(7, 2) + "-" + ubicacion.Ubicacion.Substring(9, 2);
             pTipoSeriado.Items.Add("L");
             pTipoSeriado.Items.Add("S");
+            MessagingCenter.Subscribe<App, string>(this, "Barcode", (sender, arg) =>
+            {
+
+                // Add the barcode to a list (first position)
+                System.Diagnostics.Debug.WriteLine("Leido en la pagina " + arg);
+                NOC_leido(arg);
+
+            });
+
+
+        }
+
+        private void NOC_leido(string arg)
+        {
+            if (eNOC.IsFocused)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    eNOC.Text = arg.Replace("\r", "").ToString();
+                });
+            }
+            
+            if (eNs.IsFocused)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    eNs.Text = arg.Replace("\r", "").Substring(2);
+                });
+
+            }
+
+
+
+
         }
 
         private async void eNoc_completed(object sender, EventArgs e)
@@ -159,6 +193,7 @@ namespace Auditoria_V5
 
 
                 await App.Database.SaveItemAsync(nocito);
+                MessagingCenter.Unsubscribe<App, string>(this, "Barcode");
                 await Navigation.PopAsync();
             }
 

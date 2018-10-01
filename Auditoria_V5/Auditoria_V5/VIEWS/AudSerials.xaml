@@ -32,7 +32,7 @@
             </ListView>
 
             <StackLayout Orientation="Horizontal">
-                <Entry x:Name="eNewSerial" Placeholder="Nuevo Numero" PlaceholderColor="{StaticResource AccentColor2}" HorizontalOptions="StartAndExpand"></Entry>
+                <Entry x:Name="eNewSerial" Placeholder="Nuevo Numero" TextColor="{StaticResource FontColor}" PlaceholderColor="{StaticResource AccentColor2}" HorizontalOptions="StartAndExpand" ></Entry>
                 <Button Text="Add" HeightRequest="50" BorderRadius="35" Clicked="Add_Clicked" BackgroundColor="{StaticResource MainColor}" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
 

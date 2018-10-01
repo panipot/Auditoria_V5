@@ -14,7 +14,7 @@
             
             />
 
-        <Label TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource BackgroundColor}" FontSize="Large" HorizontalOptions="CenterAndExpand" >Auditorias v4</Label>
+        <Label TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource BackgroundColor}" FontSize="Large" HorizontalOptions="CenterAndExpand" >Auditorias</Label>
 
         <StackLayout Orientation="Vertical">
             <Button x:Name="btnNueva" Text="Nueva Auditoria" BorderRadius="30" Clicked="onBtnStart" HeightRequest="55" WidthRequest="150" BackgroundColor="{StaticResource MainColor}"/>

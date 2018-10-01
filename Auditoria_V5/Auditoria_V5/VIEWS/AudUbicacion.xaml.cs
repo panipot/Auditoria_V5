@@ -36,15 +36,52 @@ namespace Auditoria_V5
 
                 // Add the barcode to a list (first position)
                 System.Diagnostics.Debug.WriteLine("Leido en la pagina " + arg);
-                //////////main_leido(arg);
+                main_leido(arg);
 
             });
 
 
         }
 
-  
-            private async void Button_Clicked(object sender, EventArgs e)
+        private  void main_leido(string arg)
+        {
+            foreach (UbiNoc item in listView.ItemsSource)
+            {
+                if (arg.Replace("\r", "") == item.Noc)
+                {
+                    listView.SelectedItem = ((List<UbiNoc>)listView.ItemsSource).Where(x => x.Noc == arg.Replace("\r", "")).FirstOrDefault();
+
+                    var index = listView.SelectedItem;
+                    foreach (ViewCell myViewCell in listView.TemplatedItems)
+                    {
+                        var entry = myViewCell.FindByName<Entry>("eCant");
+                        var noci = myViewCell.FindByName<Label>("eNOC");
+                        if (noci.Text == item.Noc)
+                        {
+                            // myViewCell.View.BackgroundColor= this.BackgroundColor;
+
+                         
+                                entry?.Focus();
+                           
+                        }
+                        //else { myViewCell.View.BackgroundColor = this.BackgroundColor; }
+
+
+                    }
+
+                }
+
+                else
+                {
+                    listView.SelectedItem = null;
+                }
+            }
+
+        }
+
+    
+
+        private async void Button_Clicked(object sender, EventArgs e)
             {
                 await Navigation.PushAsync(new SelBth());
             }
@@ -67,16 +104,26 @@ namespace Auditoria_V5
             auditado = (UbiNoc)e.SelectedItem;
             if (auditado.ControlUnitario == null || auditado.ControlUnitario == "")
             {
-                lCant.Text = auditado.Cantidad.ToString();
+
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    lCant.Text = auditado.Cantidad.ToString();
+                });
             }
             else
             {
                 var a= await App.Database.GetNumsSerie(auditado);
-                lCant.Text = a.ToString()+"/"+ auditado.Cantidad.ToString();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    lCant.Text = a.ToString() + "/" + auditado.Cantidad.ToString();
+                });
             }
-            eObs.IsEnabled = true;
-            eObs.Text = auditado.Obs;
 
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                eObs.IsEnabled = true;
+                eObs.Text = auditado.Obs;
+            });
         }
 
         private async void Entry_Completed(object sender, EventArgs e)

@@ -48,9 +48,14 @@ namespace Auditoria_V5
 
                     seriado = item;
                     item.Check = true;
-                    Lista_serial.ItemsSource = null;
-                    Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
-
+                    seriado.Check = true;
+                    await App.Database.SaveItemAsync2(seriado);
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        
+                        Lista_serial.ItemsSource = null;
+                        Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
+                    });
                 }
             }
         }

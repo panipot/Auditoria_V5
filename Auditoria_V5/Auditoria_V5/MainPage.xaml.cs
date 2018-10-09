@@ -13,9 +13,13 @@ namespace Auditoria_V5
 		public MainPage()
 		{
 			InitializeComponent();
-            MuestraBtn();
+            
         }
 
+        protected override void OnAppearing()
+        {
+            MuestraBtn();
+        }
         async void MuestraBtn()
         {
             try

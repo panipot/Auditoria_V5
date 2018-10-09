@@ -52,7 +52,7 @@ namespace Auditoria_V5
                 foreach (tNumerosSerie item in Lista_serial.ItemsSource)
                 {
                     System.Diagnostics.Debug.WriteLine("Revisando lista en Serials_leido " + item.NumSerie);
-                    if (arg.Replace("\r", "") == "21" + item.NumSerie)
+                    if ((arg.Replace("\r", "") == "21" + item.NumSerie)|| (arg.Replace("\r", "") == "10" + item.NumSerie))
                     {
 
                         seriado = item;

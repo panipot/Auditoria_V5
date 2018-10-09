@@ -111,30 +111,38 @@ namespace Auditoria_V5
                     {
                        
                         bool dminin;
+                        double canta;
                         DateTime Fhprob;
-                        
                         string uco = values[i][0].ToString();
                         string dsuco = values[i][1].ToString();
                         DateTime Fhaudi = DateTime.ParseExact(values[i][2].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                         ubica = values[i][3].ToString();
                         string estadoubi = values[i][4].ToString();
+
                         string noca = values[i][5].ToString();
                         string desca = values[i][6].ToString();
-                        double canta = Convert.ToDouble(values[i][7]);
-                        
                         string estadoop = values[i][8].ToString();
                         string contunit = values[i][9].ToString();
                         string numls = values[i][10].ToString();
+                        string obs = values[i][13].ToString();
+                        if (values[i][12].ToString() == "S")
+                        { dminin = true; }
+                        else
+                        { dminin = false; }
+
                         if (values[i][11].ToString() != "")
                         { Fhprob = DateTime.ParseExact(values[i][11].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture); }
                         else
                         { Fhprob = DateTime.ParseExact("01/01/0001", "dd/MM/yyyy", CultureInfo.InvariantCulture); ; }
 
-                        if (values[i][12].ToString() == "S")
-                        { dminin = true; }
+                        if (noca == "")
+                        {
+                            canta = 0;
+                        }
                         else
-                        { dminin = false; }
-                        string obs= values[i][13].ToString();
+                        {
+                            canta = Convert.ToDouble(values[i][7]);
+                        }
 
                         if (ubica!=ubi_ant || noca!=noc_ant)
                         {

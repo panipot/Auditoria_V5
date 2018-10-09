@@ -123,6 +123,22 @@ namespace Auditoria_V5.DATA
 
 
         }
+        public Task<int> Get_Num_NocsUbi(string ubicacion)
+        {
+
+            try
+            {
+                var g = database.ExecuteScalarAsync<int>("Select Count(NOC) as NumNoc from [UbiNoc] where [Ubicacion]='" + ubicacion + "' and [NOC]<>''");
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+
+        }
         public Task<int> GetCuentaNSErr_fich(string Fichero)
         {
 
@@ -294,6 +310,12 @@ namespace Auditoria_V5.DATA
         {
             return database.ExecuteAsync("Update [UbiNoc] set [Check]=1 where [Ubicacion]='" + ubicacion + "'");
         }
+        public Task<int> Set_Ubi_Done_Vacia(string ubicacion)
+        {
+            return database.ExecuteAsync("Update [UbiNoc] set [Error]=0, [CantReal]=0 where [Ubicacion]='" + ubicacion + "'");
+        }
+
+
         public Task<int> Set_Serial_Check(tNumerosSerie seriado)
         {
             return database.UpdateAsync(seriado);

@@ -42,6 +42,10 @@ namespace Auditoria_V5
 
 
         }
+        protected override  void OnDisappearing()
+        {
+            MessagingCenter.Unsubscribe<App, string>(this, "Barcode");
+        }
 
         private  void main_leido(string arg)
         {
@@ -62,6 +66,7 @@ namespace Auditoria_V5
 
                          
                                 entry?.Focus();
+                            
                            
                         }
                         //else { myViewCell.View.BackgroundColor = this.BackgroundColor; }
@@ -230,7 +235,8 @@ namespace Auditoria_V5
         private async void Fin_Clicked(object sender, EventArgs e)
         {
             clUbicacion ubicacion = (clUbicacion)BindingContext;
-            List<UbiNoc> milista = await App.Database.GetUbiNoc(ubicacion.Ubicacion);
+            //List<UbiNoc> milista = await App.Database.GetUbiNoc(ubicacion.Ubicacion);
+            int numNoc = await App.Database.Get_Num_NocsUbi(ubicacion.Ubicacion);
             var action = await DisplayAlert("Aviso", "La ubicacion: " + ubicacion.Ubicacion + " Se marcará como finalizada, ¿Seguro?", "Si", "No");
             
             if (!action)
@@ -251,9 +257,15 @@ namespace Auditoria_V5
 
 
                 //}
+                if (numNoc==0)
+                {
+                    await App.Database.Set_Ubi_Done_Vacia(ubicacion.Ubicacion);
+                }
 
+               
 
                 await App.Database.Set_Ubi_Done(ubicacion.Ubicacion);
+                MessagingCenter.Unsubscribe<App, string>(this, "Barcode");
                 await Navigation.PopAsync();
             }
         }

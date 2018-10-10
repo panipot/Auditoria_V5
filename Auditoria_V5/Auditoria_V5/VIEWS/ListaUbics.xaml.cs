@@ -33,7 +33,8 @@ namespace Auditoria_V5
 
                 // Add the barcode to a list (first position)
                 System.Diagnostics.Debug.WriteLine("Leido en la pagina " + arg);
-                ubic_leido(arg);
+                if (arg.Replace("\r", "").Length == 11)
+                { ubic_leido(arg); }
 
             });
 
@@ -52,7 +53,7 @@ namespace Auditoria_V5
                 }
 
             }
-
+            MessagingCenter.Unsubscribe<App, string>(this, "Barcode");
             Device.BeginInvokeOnMainThread(async () =>
             {
                 await Navigation.PushAsync(

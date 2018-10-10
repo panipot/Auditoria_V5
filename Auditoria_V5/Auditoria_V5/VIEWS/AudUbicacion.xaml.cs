@@ -36,15 +36,21 @@ namespace Auditoria_V5
 
                 // Add the barcode to a list (first position)
                 System.Diagnostics.Debug.WriteLine("Leido en la pagina " + arg);
-                main_leido(arg);
+                if (arg.Replace("\r", "").Length == 13)
+                {
+                    main_leido(arg);
+                }
 
             });
 
 
         }
-        protected override  void OnDisappearing()
+
+
+        protected override async void OnDisappearing()
         {
             MessagingCenter.Unsubscribe<App, string>(this, "Barcode");
+            //await Navigation.PopAsync();
         }
 
         private  void main_leido(string arg)

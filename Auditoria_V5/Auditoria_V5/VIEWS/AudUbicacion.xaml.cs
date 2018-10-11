@@ -70,8 +70,11 @@ namespace Auditoria_V5
                         {
                             // myViewCell.View.BackgroundColor= this.BackgroundColor;
 
-                         
-                                entry?.Focus();
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                entry.CursorPosition = 1;
+                            });
+                            entry?.Focus();
                             
                            
                         }

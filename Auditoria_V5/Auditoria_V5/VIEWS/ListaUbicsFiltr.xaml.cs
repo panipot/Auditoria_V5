@@ -13,11 +13,54 @@ namespace Auditoria_V5
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ListaUbicsFiltr : ContentPage
 	{
-		public ListaUbicsFiltr (List<clUbicacion> milista)
+        clUbicacion bueno;
+        public ListaUbicsFiltr (List<clUbicacion> milista)
 		{
 			InitializeComponent ();
             listView.ItemsSource = milista;
 		}
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            
+            MessagingCenter.Subscribe<App, string>(this, "Barcode", (sender, arg) =>
+            {
+
+                // Add the barcode to a list (first position)
+                System.Diagnostics.Debug.WriteLine("Leido en la pagina " + arg);
+                if (arg.Replace("\r", "").Length == 11)
+                { ubic_leido(arg); }
+
+            });
+
+        }
+
+        private async void ubic_leido(string arg)
+        {
+
+            foreach (clUbicacion ubicacion in listView.ItemsSource)
+            {
+                if (arg.Replace("\r", "") == ubicacion.Ubicacion)
+                {
+                    // listView.SelectedItem = ((List<clUbicacion>)listView.ItemsSource).Where(x => x.Ubicacion == arg.Replace("\r", "")).FirstOrDefault();
+                    bueno = ubicacion;
+                    break;
+                }
+
+            }
+            MessagingCenter.Unsubscribe<App, string>(this, "Barcode");
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Navigation.PushAsync(
+               new AudUbicacion()
+               {
+                   BindingContext = bueno
+
+               });
+            });
+
+        }
 
         private async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

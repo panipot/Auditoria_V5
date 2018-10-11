@@ -10,7 +10,7 @@
             <Button Text="Filtro" HeightRequest="80" BorderRadius="35" BackgroundColor="{StaticResource MainColor}" Clicked="Filtro_Clicked"></Button>
             <Button Text="Almacen Completo" HeightRequest="80" BorderRadius="35" Clicked="Almacen_Clicked" BackgroundColor="{StaticResource MainColor}"></Button>
             <Button Text="Exportar Resultados" HeightRequest="80" BorderRadius="35" Clicked="Export_Clicked" BackgroundColor="{StaticResource MainColor}"></Button>
-
+            <Button Text="Conex. Scanner" HeightRequest="80" BorderRadius="35" Clicked="Conex_Clicked" BackgroundColor="{StaticResource MainColor}"></Button>
 
         </StackLayout>
     </ContentPage.Content>

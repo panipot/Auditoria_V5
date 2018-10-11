@@ -54,5 +54,12 @@ namespace Auditoria_V5
 
             await Navigation.PushAsync(new FiltroUbics(auditoria));
         }
+
+        private async void Conex_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SelBth());
+
+
+        }
     }
 }

@@ -7,7 +7,11 @@
 
     <!--<ScrollView>-->
         <StackLayout Padding="5">
-
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Ubicacion" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"></Label>
+            <Label Text="Err. / Revisada" HorizontalOptions="EndAndExpand" TextColor="{StaticResource FontColor}"></Label>
+            <BoxView HeightRequest="2" ></BoxView>
+        </StackLayout>
             <ListView x:Name="listView" Margin="10" ItemSelected="OnListItemSelected" Style="{StaticResource Celda}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

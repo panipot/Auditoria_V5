@@ -59,6 +59,9 @@ namespace Auditoria_V5
             await Navigation.PushAsync(new Resultados());
         }
 
-        
+        private async void onBtnConec(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SelBth());
+        }
     }
 }

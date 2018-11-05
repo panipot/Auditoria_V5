@@ -17,10 +17,11 @@
         <Label TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource BackgroundColor}" FontSize="Large" HorizontalOptions="CenterAndExpand" >Auditorias</Label>
 
         <StackLayout Orientation="Vertical">
-            <Button x:Name="btnNueva" Text="Nueva Auditoria" BorderRadius="30" Clicked="onBtnStart" HeightRequest="55" WidthRequest="150" BackgroundColor="{StaticResource MainColor}"/>
-            <Button x:Name="btnContinua" Text="Continuar Auditoria" BorderRadius="30" Clicked="onBtnContinue" HeightRequest="55" WidthRequest="150" IsEnabled="False" BackgroundColor="{StaticResource MainColor}"/>
+            <Button x:Name="btnConex" Text="Conecta Scanner" Image="ic_if_bluetooth_1608580.png" ContentLayout="Left, -40" BorderRadius="25" Clicked="onBtnConec" HeightRequest="50" WidthRequest="150" BackgroundColor="{StaticResource MainColor}"/>
+            <Button x:Name="btnNueva" Text="Nueva Auditoria" BorderRadius="25" Clicked="onBtnStart" HeightRequest="50" WidthRequest="150" BackgroundColor="{StaticResource MainColor}"/>
+            <Button x:Name="btnContinua" Text="Continuar Auditoria" BorderRadius="25" Clicked="onBtnContinue" HeightRequest="50" WidthRequest="150" IsEnabled="False" BackgroundColor="{StaticResource MainColor}"/>
             
-            <Button x:Name="btnResults" Text="Resultados" BorderRadius="30" Clicked="onResults" HeightRequest="55" WidthRequest="150" BackgroundColor="{StaticResource MainColor}" IsEnabled="False"/>
+            <Button x:Name="btnResults" Text="Resultados" BorderRadius="25" Clicked="onResults" HeightRequest="50" WidthRequest="150" BackgroundColor="{StaticResource MainColor}" IsEnabled="False"/>
             
           
         </StackLayout>

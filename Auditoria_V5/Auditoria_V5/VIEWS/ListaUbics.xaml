@@ -5,7 +5,7 @@
             BackgroundColor="{StaticResource BackgroundColor}" >
 
 
-    <ScrollView>
+    <!--<ScrollView>-->
         <StackLayout Padding="5">
 
             <ListView x:Name="listView" Margin="10" ItemSelected="OnListItemSelected" Style="{StaticResource Celda}">
@@ -28,6 +28,6 @@
 
 
         </StackLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
 
 </ContentPage>

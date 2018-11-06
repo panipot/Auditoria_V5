@@ -41,7 +41,7 @@ namespace Auditoria_V5
         {
             DATA.ExportDb expo = new DATA.ExportDb();
             ClAuditoria2 auditoria = (ClAuditoria2)BindingContext;
-            expo.Exporta("ALMACEN_" + auditoria.Almacen + ".txt", "UbicNoc.db3");
+            expo.Exporta(auditoria.Fichero, "ALMACEN_" + auditoria.Almacen , "UbicNoc.db3");
             Navigation.PopAsync();
             Navigation.PopAsync();
         }

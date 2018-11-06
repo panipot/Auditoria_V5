@@ -51,40 +51,79 @@ namespace Auditoria_V5
 
         private void Almacen_clicked(object sender, SelectedItemChangedEventArgs e)
         {
+            int value1;
             auditoria = (ClAuditoria2)e.SelectedItem;
             System.Diagnostics.Debug.WriteLine("NumREg totales: " +auditoria.num_reg_totales);
             System.Diagnostics.Debug.WriteLine("Comprobasdos: " + auditoria.comprobados);
 
-            List<Microcharts.Entry> entradas = new List<Microcharts.Entry>()
-            {
 
-                new Microcharts.Entry((auditoria.num_reg_error*100/auditoria.num_reg_totales))
+
+            //List<Microcharts.Entry> entradas = new List<Microcharts.Entry>()
+            //{
+
+
+
+            //    new Microcharts.Entry((auditoria.num_reg_error * 100 / auditoria.num_reg_totales))
+            //    {
+            //        Label = "Registros",
+            //        ValueLabel = (auditoria.num_reg_error * 100 / auditoria.num_reg_totales).ToString() + "%",
+            //        Color = SKColor.Parse("#FF0033"),
+            //    },
+            //    new Microcharts.Entry((auditoria.num_ubics_error*100/auditoria.num_ubicaciones))
+            //    {
+            //        Label = "Ubicaciones",
+            //        ValueLabel = (auditoria.num_ubics_error*100 / auditoria.num_ubicaciones).ToString()+"%",
+            //        Color = SKColor.Parse("#FF8000"),
+            //    },
+            //    new Microcharts.Entry((auditoria.num_seriados_error*100/auditoria.num_seriados))
+            //    {
+            //        Label = "Seriados",
+            //        ValueLabel = (auditoria.num_seriados_error*100 / auditoria.num_seriados).ToString()+"%",
+            //        Color = SKColor.Parse("#FFE600"),
+            //    },
+            //     new Microcharts.Entry((auditoria.comprobados*100/auditoria.num_reg_totales))
+            //    {
+            //        Label = "Revisados",
+            //        ValueLabel = (auditoria.comprobados*100 / auditoria.num_reg_totales).ToString()+"%",
+            //        Color = SKColor.Parse("#1AB34D"),
+
+            //    },
+
+            //};
+            List<Microcharts.Entry> entradas = new List<Microcharts.Entry>();
+            if (auditoria.num_reg_totales>0)
+            {
+                entradas.Add(new Microcharts.Entry((auditoria.num_reg_error * 100 / auditoria.num_reg_totales))
                 {
                     Label = "Registros",
-                    ValueLabel = (auditoria.num_reg_error*100 / auditoria.num_reg_totales).ToString()+"%",
+                    ValueLabel = (auditoria.num_reg_error * 100 / auditoria.num_reg_totales).ToString() + "%",
                     Color = SKColor.Parse("#FF0033"),
-                },
-                new Microcharts.Entry((auditoria.num_ubics_error*100/auditoria.num_ubicaciones))
-                {
-                    Label = "Ubicaciones",
-                    ValueLabel = (auditoria.num_ubics_error*100 / auditoria.num_ubicaciones).ToString()+"%",
-                    Color = SKColor.Parse("#FF8000"),
-                },
-                new Microcharts.Entry((auditoria.num_seriados_error*100/auditoria.num_seriados))
-                {
-                    Label = "Seriados",
-                    ValueLabel = (auditoria.num_seriados_error*100 / auditoria.num_seriados).ToString()+"%",
-                    Color = SKColor.Parse("#FFE600"),
-                },
-                 new Microcharts.Entry((auditoria.comprobados*100/auditoria.num_reg_totales))
+                });
+                entradas.Add(new Microcharts.Entry((auditoria.comprobados * 100 / auditoria.num_reg_totales))
                 {
                     Label = "Revisados",
-                    ValueLabel = (auditoria.comprobados*100 / auditoria.num_reg_totales).ToString()+"%",
+                    ValueLabel = (auditoria.comprobados * 100 / auditoria.num_reg_totales).ToString() + "%",
                     Color = SKColor.Parse("#1AB34D"),
-                    
-                },
-                
+
+                });
+
+
             };
+            entradas.Add(new Microcharts.Entry((auditoria.num_ubics_error * 100 / auditoria.num_ubicaciones))
+            {
+                Label = "Ubicaciones",
+                ValueLabel = (auditoria.num_ubics_error * 100 / auditoria.num_ubicaciones).ToString() + "%",
+                Color = SKColor.Parse("#FF8000"),
+            });
+            if (auditoria.num_seriados > 0)
+            {
+                entradas.Add(new Microcharts.Entry((auditoria.num_seriados_error * 100 / auditoria.num_seriados))
+                {
+                    Label = "Seriados",
+                    ValueLabel = (auditoria.num_seriados_error * 100 / auditoria.num_seriados).ToString() + "%",
+                    Color = SKColor.Parse("#FFE600"),
+                });
+            }
 
             MyBarChart.Chart = new BarChart { Entries = entradas };
 

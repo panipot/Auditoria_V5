@@ -8,8 +8,8 @@
         <!-- Place new controls here -->
 
         <Image 
-           Source="almacen21.png" HeightRequest="280"
-            WidthRequest="280"
+           Source="almacen21.png" HeightRequest="200"
+            WidthRequest="200"
             Aspect="Fill"
             
             />

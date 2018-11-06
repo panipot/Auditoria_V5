@@ -16,7 +16,18 @@ namespace Auditoria_V5.DATA
             {
                 List<UbiNoc> ubics = new List<UbiNoc>();
                 ubics = await App.Database.GetItemsAsync();
-
+                fileHelper.AppendText(filename, "CO_UNIDAD|"
+                        +  "DS_UNIDAD|"
+                        +  "FhAuditoria|"
+                         + "UBICACION|"
+                        +  "NOC|"
+                        +  "DS_NOC|"
+                        +  "CANT_SIGLE|"
+                        +  "CANT_REAL|"
+                        +  "ESTADO_OP|"
+                        +  "OBS|"
+                        +  "ERROR|" +  "REVISADA|FICHERO" 
+                        + Environment.NewLine);
                 foreach (UbiNoc ubinoci in ubics)
                 {
                     fileHelper.AppendText(filename, ubinoci.Uco + "|"

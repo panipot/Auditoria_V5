@@ -7,16 +7,18 @@
 
     <!--<ScrollView>-->
         <StackLayout Padding="5">
-        <StackLayout Orientation="Horizontal">
+        
+            <StackLayout Orientation="Horizontal">
             <Label Text="Ubicacion" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"></Label>
-            <Label Text="Err. / Revisada" HorizontalOptions="EndAndExpand" TextColor="{StaticResource FontColor}"></Label>
-            <BoxView HeightRequest="2" ></BoxView>
+            <Label Text="Nº NOCS/ Err. / Revisada" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{StaticResource FontColor}"></Label>
+           
         </StackLayout>
-            <ListView x:Name="listView" Margin="10" ItemSelected="OnListItemSelected" Style="{StaticResource Celda}">
+        <BoxView HeightRequest="4" Color="{StaticResource FontColor}" ></BoxView>
+        <ListView x:Name="listView" Margin="5" ItemSelected="OnListItemSelected" Style="{StaticResource Celda}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Margin="10,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout Margin="5,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Text="{Binding Ubicacion}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
                                 <Label Text="{Binding Num_nocs}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
                                 <!--<Label Text="{Binding Noc}" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />-->

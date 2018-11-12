@@ -322,6 +322,13 @@ namespace Auditoria_V5.DATA
             return database.ExecuteAsync("Update [UbiNoc] set [Error]=0, [CantReal]=0 where [Ubicacion]='" + ubicacion + "'");
         }
 
+        public Task<int> Set_UbiNoc_Error(UbiNoc ubinoci)
+        {
+            return database.ExecuteAsync("Update [UbiNoc] set [Error]=1 where [Ubicacion]='" + ubinoci.Ubicacion + "' and [Noc]='" + ubinoci.Noc + "'");
+        }
+
+
+
 
         public Task<int> Set_Serial_Check(tNumerosSerie seriado)
         {

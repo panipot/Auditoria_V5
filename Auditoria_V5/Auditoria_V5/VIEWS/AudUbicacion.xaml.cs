@@ -270,6 +270,22 @@ namespace Auditoria_V5
                 {
                     await App.Database.Set_Ubi_Done_Vacia(ubicacion.Ubicacion);
                 }
+                else
+                {
+                    List<UbiNoc> milista = await App.Database.GetUbiNoc(ubicacion.Ubicacion);
+
+                    foreach (UbiNoc item in milista)
+                    {
+                        if (item.Cantidad!=item.CantReal)
+                        {
+                            await App.Database.Set_UbiNoc_Error(item);
+                        }
+
+
+                    }
+
+
+                }
 
                
 

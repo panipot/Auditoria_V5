@@ -11,7 +11,7 @@
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Ubicacion" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"></Label>
-                <Label Text="Nº NOCS/ Err. / Revisada" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{StaticResource FontColor}"></Label>
+                <Label Text="Nº Regs/ Err. / Revisada" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{StaticResource FontColor}"></Label>
 
             </StackLayout>
             <BoxView HeightRequest="4" Color="{StaticResource FontColor}" ></BoxView>

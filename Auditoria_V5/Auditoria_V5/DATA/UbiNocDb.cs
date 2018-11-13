@@ -163,6 +163,13 @@ namespace Auditoria_V5.DATA
             return database.ExecuteAsync("DELETE FROM [UbiNoc] where [Fichero]='" + filename + "'");
 
         }
+        public Task<int> Del_Ubi(string ubicacion)
+        {
+
+            
+            return database.ExecuteAsync("DELETE FROM [UbiNoc] where [Ubicacion]='" + ubicacion + "'");
+
+        }
 
         public Task<int> SaveItemAsync(UbiNoc item)
         {

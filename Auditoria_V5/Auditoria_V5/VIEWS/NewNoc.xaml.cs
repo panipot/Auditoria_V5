@@ -32,6 +32,7 @@ namespace Auditoria_V5
             grpNs.ItemsSource = lista;
            ubicacion = (clUbicacion)BindingContext;
             this.Title = ubicacion.Ubicacion.Substring(0, 3) + "-" + ubicacion.Ubicacion.Substring(3, 2) + "-" + ubicacion.Ubicacion.Substring(5, 2) + "-" + ubicacion.Ubicacion.Substring(7, 2) + "-" + ubicacion.Ubicacion.Substring(9, 2);
+            pTipoSeriado.Items.Clear();
             pTipoSeriado.Items.Add("L");
             pTipoSeriado.Items.Add("S");
             MessagingCenter.Subscribe<App, string>(this, "Barcode", (sender, arg) =>
@@ -191,6 +192,11 @@ namespace Auditoria_V5
                 }
 
 
+                int numnocs= await App.Database.Get_Num_NocsUbi(ubicacion.Ubicacion);
+                if (numnocs==0)
+                {
+                    await App.Database.Del_Ubi(ubicacion.Ubicacion);
+                }
 
                 await App.Database.SaveItemAsync(nocito);
                 MessagingCenter.Unsubscribe<App, string>(this, "Barcode");

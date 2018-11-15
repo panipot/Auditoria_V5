@@ -14,6 +14,7 @@ namespace Auditoria_V5
 	public partial class ListaUbicsFiltr : ContentPage
 	{
         clUbicacion bueno;
+        Boolean oki;
         public ListaUbicsFiltr (List<clUbicacion> milista)
 		{
 			InitializeComponent ();
@@ -23,7 +24,7 @@ namespace Auditoria_V5
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            
+            bueno = new clUbicacion();
             MessagingCenter.Subscribe<App, string>(this, "Barcode", (sender, arg) =>
             {
 
@@ -38,28 +39,34 @@ namespace Auditoria_V5
 
         private async void ubic_leido(string arg)
         {
-
+            oki = false;
             foreach (clUbicacion ubicacion in listView.ItemsSource)
             {
                 if (arg.Replace("\r", "") == ubicacion.Ubicacion)
                 {
                     // listView.SelectedItem = ((List<clUbicacion>)listView.ItemsSource).Where(x => x.Ubicacion == arg.Replace("\r", "")).FirstOrDefault();
                     bueno = ubicacion;
+                    oki = true;
                     break;
+
                 }
 
             }
-            MessagingCenter.Unsubscribe<App, string>(this, "Barcode");
-            Device.BeginInvokeOnMainThread(async () =>
+
+            if (bueno.Ubicacion != null && oki == true)
             {
-                await Navigation.PushAsync(
-               new AudUbicacion()
-               {
-                   BindingContext = bueno
+                MessagingCenter.Unsubscribe<App, string>(this, "Barcode");
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Navigation.PushAsync(
+                   new AudUbicacion()
+                   {
+                       BindingContext = bueno
 
-               });
-            });
-
+                   });
+                });
+               
+            }
         }
 
         private async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)

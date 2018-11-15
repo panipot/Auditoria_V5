@@ -15,6 +15,8 @@ namespace Auditoria_V5
 	{
 
         clUbicacion bueno;
+        Boolean oki;
+
         public ListaUbics (ClAuditoria2 auditoria)
 		{
             this.BindingContext = auditoria;
@@ -26,7 +28,7 @@ namespace Auditoria_V5
         {
             base.OnAppearing();
             var auditoria = (ClAuditoria2)BindingContext;
-
+            bueno = new clUbicacion();
             listView.ItemsSource = await App.Database.GetUbicsFich(auditoria);
             MessagingCenter.Subscribe<App, string>(this, "Barcode", (sender, arg) =>
             {
@@ -42,28 +44,33 @@ namespace Auditoria_V5
 
         private async void ubic_leido(string arg)
         {
-           
+            oki = false;
             foreach (clUbicacion ubicacion in listView.ItemsSource)
             {
                 if (arg.Replace("\r", "") == ubicacion.Ubicacion)
                 {
                     // listView.SelectedItem = ((List<clUbicacion>)listView.ItemsSource).Where(x => x.Ubicacion == arg.Replace("\r", "")).FirstOrDefault();
                    bueno = ubicacion;
+                    oki = true;
                    break;
                 }
 
             }
-            MessagingCenter.Unsubscribe<App, string>(this, "Barcode");
-            Device.BeginInvokeOnMainThread(async () =>
+           
+            if ( bueno.Ubicacion!=null && oki==true)
             {
-                await Navigation.PushAsync(
-               new AudUbicacion()
-               {
-                   BindingContext = bueno
+                MessagingCenter.Unsubscribe<App, string>(this, "Barcode");
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Navigation.PushAsync(
+                   new AudUbicacion()
+                   {
+                       BindingContext = bueno
 
-               });
-            });
-
+                   });
+                });
+                
+            }
         }
 
 

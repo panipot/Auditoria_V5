@@ -15,16 +15,31 @@ namespace Auditoria_V5
 	{
         clUbicacion bueno;
         Boolean oki;
-        public ListaUbicsFiltr (List<clUbicacion> milista)
+        List<clUbicacion> milista;
+        public ListaUbicsFiltr (List<clUbicacion> milista2)
 		{
-			InitializeComponent ();
-            listView.ItemsSource = milista;
+            milista = milista2;
+            InitializeComponent ();
+            listView.ItemsSource = milista2;
+            
 		}
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             bueno = new clUbicacion();
+            List<clUbicacion> milista2= new List<clUbicacion>();
+
+            foreach (clUbicacion item in listView.ItemsSource)
+            {
+                milista2.Add(item);
+            }
+
+            clListaUbics arch = new clListaUbics();
+            milista = await arch.Actualiza_lista_ubics(milista2);
+            listView.ItemsSource = milista;
+
+
             MessagingCenter.Subscribe<App, string>(this, "Barcode", (sender, arg) =>
             {
 

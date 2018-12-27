@@ -206,7 +206,10 @@ namespace Auditoria_V5
                             await App.Database.SaveItemAsync(auditado);
                             listView.ItemsSource = null;
                             listView.ItemsSource = await App.Database.GetUbiNoc(auditado.Ubicacion);
-
+                            await Navigation.PushAsync(new AudSerials()
+                            {
+                                BindingContext = auditado
+                            });
 
                         }
                         else

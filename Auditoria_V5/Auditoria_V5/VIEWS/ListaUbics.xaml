@@ -14,12 +14,13 @@
            
         </StackLayout>
         <BoxView HeightRequest="4" Color="{StaticResource FontColor}" ></BoxView>
-        <ListView x:Name="listView" Margin="5" ItemSelected="OnListItemSelected" Style="{StaticResource Celda}">
+        <ListView x:Name="listView" Margin="5" ItemSelected="OnListItemSelected" SeparatorColor="#fcfff5" >
+            
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Margin="5,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label Text="{Binding Ubicacion}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
+                                <Label Text="{Binding Ubicacion, StringFormat='{0:###-########}'}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
                                 <Label Text="{Binding Num_nocs}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
                                 <!--<Label Text="{Binding Noc}" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />-->
                                 <Image Source="check.png"  IsVisible="{Binding Error}" />

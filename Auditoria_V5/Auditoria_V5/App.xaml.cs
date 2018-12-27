@@ -36,6 +36,7 @@ namespace Auditoria_V5
 		{
 			InitializeComponent();
             MainPage = new NavigationPage(new MainPage()) { BarBackgroundColor = Color.FromHex("3e606f") };
+
         }
 
 		protected override void OnStart ()

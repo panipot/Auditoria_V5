@@ -55,9 +55,9 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <StackLayout Orientation="Vertical" Grid.Column="0" Grid.Row="0" Padding="0,0,0,0">
-                                        <Label x:Name="eNOC" Text="{Binding Noc}" FontSize="Default" TextColor="{StaticResource FontColor}" VerticalOptions="Center" HorizontalTextAlignment="Start"/>
-                                        <Label Text="{Binding Descripcion}" FontSize="Micro" FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center" HorizontalTextAlignment="Start"/>
+                                    <StackLayout Orientation="Vertical" Grid.Column="0" Grid.Row="0" Padding="0,0,0,0" VerticalOptions="FillAndExpand">
+                                        <Label x:Name="eNOC" Text="{Binding Noc}" FontSize="Default" TextColor="{StaticResource FontColor}" VerticalOptions="Start" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Descripcion}" FontSize="Micro" FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" WidthRequest="150"/>
                                     </StackLayout>
                                     <Label Text="{Binding EstadoOp}" Grid.Column="1" FontSize="Micro" FontAttributes="Italic" TextColor="{StaticResource FontColor}" VerticalOptions="Center"/>
                                     <Entry x:Name="eCant" Keyboard="Numeric" Text="{Binding CantReal}" Grid.Column="2" FontSize="Small" Grid.Row="0" TextColor="{StaticResource FontColor}" VerticalOptions="CenterAndExpand" Focused="eCant_Focused" Completed="Entry_Completed" />

@@ -8,7 +8,7 @@
         <!-- Place new controls here -->
 
         <Image 
-           Source="almacen21.png" HeightRequest="200"
+           Source="almacen21.png" HeightRequest="220"
             WidthRequest="200"
             Aspect="Fill"
             
@@ -16,7 +16,7 @@
 
         <Label TextColor="{StaticResource FontColor}" BackgroundColor="{StaticResource BackgroundColor}" FontSize="Large" HorizontalOptions="CenterAndExpand" >Auditorias</Label>
 
-        <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
             <Button x:Name="btnConex" Text="Conecta Scanner" Image="ic_if_bluetooth_1608580.png" ContentLayout="Left, -40" BorderRadius="25" Clicked="onBtnConec" HeightRequest="50" WidthRequest="150" BackgroundColor="{StaticResource MainColor}"/>
             <Button x:Name="btnNueva" Text="Nueva Auditoria" BorderRadius="25" Clicked="onBtnStart" HeightRequest="50" WidthRequest="150" BackgroundColor="{StaticResource MainColor}"/>
             <Button x:Name="btnContinua" Text="Continuar Auditoria" BorderRadius="25" Clicked="onBtnContinue" HeightRequest="50" WidthRequest="150" IsEnabled="False" BackgroundColor="{StaticResource MainColor}"/>

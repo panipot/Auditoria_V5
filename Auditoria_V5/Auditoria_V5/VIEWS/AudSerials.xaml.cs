@@ -1,4 +1,5 @@
 ﻿using Auditoria_V5.DATA;
+using Plugin.SimpleAudioPlayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,18 @@ namespace Auditoria_V5
 	{
         tNumerosSerie seriado = new tNumerosSerie();
         UbiNoc ubinoci;
+       
         public AudSerials ()
 		{
-
+            
             InitializeComponent ();
 		}
 
         protected override async void OnAppearing()
 
         {
-            
+ 
+           
             ubinoci = (UbiNoc)BindingContext;
             Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
 
@@ -40,6 +43,10 @@ namespace Auditoria_V5
 
         private async void serial_leido(string arg)
         {
+            var alertSound = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
+            var OkSound = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
+            alertSound.Load("ERROR.wav");
+            OkSound.Load("OK.wav");
             if (eNewSerial.IsFocused)
             {
                 Device.BeginInvokeOnMainThread(async () =>
@@ -49,15 +56,17 @@ namespace Auditoria_V5
             }
             else
             {
+                Boolean encontrado = false;
                 foreach (tNumerosSerie item in Lista_serial.ItemsSource)
                 {
                     System.Diagnostics.Debug.WriteLine("Revisando lista en Serials_leido " + item.NumSerie);
                     if ((arg.Replace("\r", "") == "21" + item.NumSerie)|| (arg.Replace("\r", "") == "10" + item.NumSerie))
                     {
-
+                        OkSound.Play();
                         seriado = item;
                         item.Check = true;
                         seriado.Check = true;
+                        encontrado = true;
                         await App.Database.SaveItemAsync2(seriado);
                         Device.BeginInvokeOnMainThread(async () =>
                         {
@@ -66,7 +75,11 @@ namespace Auditoria_V5
                             Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
                         });
                     }
+                  
                 }
+                if (encontrado==false)
+                alertSound.Play();
+
             }
         }
 

@@ -218,13 +218,30 @@ namespace Auditoria_V5
                     }
                     else
                     {
-                        auditado.Error = false;
-                        auditado.Check = true;
-                        auditado.CantReal = Convert.ToDouble(texto);
-                        await App.Database.SaveItemAsync(auditado);
-                        listView.ItemsSource = null;
-                        listView.ItemsSource = await App.Database.GetUbiNoc(auditado.Ubicacion);
 
+                        if (await DisplayAlert("", "Cantidad concuerda, Revisamos Seriados??", "Si", "No"))
+                        {
+                            auditado.Error = false;
+                            auditado.Check = true;
+                            auditado.CantReal = Convert.ToDouble(texto);
+                            await App.Database.SaveItemAsync(auditado);
+                            listView.ItemsSource = null;
+                            listView.ItemsSource = await App.Database.GetUbiNoc(auditado.Ubicacion);
+
+                            await Navigation.PushAsync(new AudSerials()
+                            {
+                                BindingContext = auditado
+                            });
+                        }
+                        else
+                        {
+                            auditado.Error = false;
+                            auditado.Check = true;
+                            auditado.CantReal = Convert.ToDouble(texto);
+                            await App.Database.SaveItemAsync(auditado);
+                            listView.ItemsSource = null;
+                            listView.ItemsSource = await App.Database.GetUbiNoc(auditado.Ubicacion);
+                        }
 
 
                     }

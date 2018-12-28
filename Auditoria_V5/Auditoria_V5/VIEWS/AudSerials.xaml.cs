@@ -115,6 +115,19 @@ namespace Auditoria_V5
         private async void Fin_Clicked(object sender, EventArgs e)
         {
             var ubinoci = (UbiNoc)BindingContext;
+            var nocheck = await App.Database.GetNum_NOCheckNS(ubinoci);
+            if (nocheck>0)
+            {
+               var action1= await DisplayAlert("Aviso", "No todos los seriados han sido localizados. Los marcamos como Error?", "Si", "No");
+                if(!action1)
+                {
+                    return;
+                }
+                else
+                {
+                    await App.Database.Set_NsErrorcheck(ubinoci);
+                }
+            }
             var action = await DisplayAlert("Aviso", "Los seriados de la ubicacion: " + ubinoci.Ubicacion + " y NOC:" + ubinoci.Noc + " Se marcarán como finalizada, ¿Seguro?", "Si", "No");
             if (!action)
             {

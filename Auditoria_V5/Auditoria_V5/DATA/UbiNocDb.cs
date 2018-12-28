@@ -295,6 +295,21 @@ namespace Auditoria_V5.DATA
             }
         }
 
+        public Task<int> GetNum_NOCheckNS(UbiNoc auditado)
+        {
+            try
+            {
+                // var g=  await database.ExecuteScalarAsync<int>("Select Count(Ubicacion) from UbiNoc");
+                var g = database.ExecuteScalarAsync<int>("Select Count(NOC) as Num from [tNumerosSerie] where [NOC]='" + auditado.Noc + "' and [Ubicacion]='" + auditado.Ubicacion + "' and [Check]=0");
+                
+                return g;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public Task<List<clUbicacion>> GetUbicsFich(ClAuditoria2 auditoria)
         {
             string param = auditoria.Fichero;
@@ -356,6 +371,14 @@ namespace Auditoria_V5.DATA
             return database.UpdateAsync(seriado);
             //return database.ExecuteAsync("Update [tNumerosSerie] set [Check]=1 where [Ubicacion]='" + seriado.Ubicacion+ "'");
         }
+        
+        public Task<int> Set_NsErrorcheck(UbiNoc ubinoci)
+        {
+            
+            return database.ExecuteAsync("Update [tNumerosSerie] set [Check]=1, [Error]=1 where [Check]=0 and [Ubicacion]='" + ubinoci.Ubicacion+ "' and [Noc]='"+ ubinoci.Noc +"';");
+        }
+
+
 
         public Task<List<tNumerosSerie>> GetSerials(UbiNoc ubinoci)
         {

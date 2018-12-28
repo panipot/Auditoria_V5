@@ -333,6 +333,11 @@ namespace Auditoria_V5.DATA
         {
             return database.ExecuteAsync("Update [UbiNoc] set [Check]=1 where [Ubicacion]='" + ubicacion + "'");
         }
+        public Task<int> IncCantSer(string ubicacion, string noc)
+        {
+            return database.ExecuteAsync("Update [UbiNoc] set [Cantidad]=[Cantidad]+1 where [Ubicacion]='" + ubicacion + "' and [Noc]='" + noc + "'");
+        }
+
         public Task<int> Set_Ubi_Done_Vacia(string ubicacion)
         {
             return database.ExecuteAsync("Update [UbiNoc] set [Error]=0, [CantReal]=0 where [Ubicacion]='" + ubicacion + "'");

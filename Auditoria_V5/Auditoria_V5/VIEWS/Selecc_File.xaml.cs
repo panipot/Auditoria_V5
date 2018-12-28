@@ -112,6 +112,7 @@ namespace Auditoria_V5
                        
                         bool dminin;
                         double canta;
+                       
                         DateTime Fhprob;
                         string uco = values[i][0].ToString();
                         string dsuco = values[i][1].ToString();
@@ -184,6 +185,7 @@ namespace Auditoria_V5
                         {
                             if (contunit != null && contunit != "")
                             {
+                                
                                 var numseri = new tNumerosSerie
                                 {
                                     Ubicacion = ubica,
@@ -193,6 +195,11 @@ namespace Auditoria_V5
                                     Fichero = filenam
                                 };
                             await App.Database.SaveItemAsync2(numseri);
+                                if (contunit!="L")
+                                {
+                                    await App.Database.IncCantSer(ubica, noca);
+                                }
+
                             }
                         }
                         noc_ant = noca;

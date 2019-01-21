@@ -25,7 +25,7 @@
                                 <Image x:Name="iCheck" Source="checkOk.png" HorizontalOptions="End" IsVisible="{Binding Check}">
 
                                     <Image.Triggers>
-                                        <MultiTrigger TargetType="iCheck">
+                                        <MultiTrigger TargetType="Image">
                                             <MultiTrigger.Conditions>
                                                 <BindingCondition Binding="{Binding Error}" Value="True"/>
                                             </MultiTrigger.Conditions>

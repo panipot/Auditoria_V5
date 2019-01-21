@@ -230,7 +230,7 @@ namespace Auditoria_V5.DATA
         {
             get
             {
-                if (Num_nocs == SumCk)
+                if (Num_regs == SumCk)
                 { return true; }
                 else
                 { return false; }

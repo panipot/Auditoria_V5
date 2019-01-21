@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:src="clr-namespace:Auditoria_V5"
              x:Class="Auditoria_V5.App">
 	<Application.Resources>
         <Color x:Key="MainColor">#d1dbbd</Color>
@@ -8,7 +9,7 @@
         <Color x:Key="AccentColor1">#193441</Color>
         <Color x:Key="AccentColor2">#91aa9d</Color>
         <Color x:Key="BackgroundColor">#3e606f</Color>
-
+        <!--<src:VisibilityConverter x:Key="VisibilityConverter"/>-->
         <Style x:Key="Celda" TargetType="ListView">
             <Setter Property="SeparatorColor" Value="#fcfff5"/>
 

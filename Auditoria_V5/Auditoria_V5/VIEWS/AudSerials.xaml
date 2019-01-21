@@ -22,8 +22,21 @@
 
                                 <!--<Label Text="{Binding Noc}" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />-->
 
-                                <Image x:Name="iCheck" Source="checkOk.png" HorizontalOptions="End" IsVisible="{Binding Check}" />
-                                <Image x:Name="iError" Source="check.png" HorizontalOptions="End" IsVisible="{Binding Error}" />
+                                <Image x:Name="iCheck" Source="checkOk.png" HorizontalOptions="End" IsVisible="{Binding Check}">
+
+                                    <Image.Triggers>
+                                        <MultiTrigger TargetType="iCheck">
+                                            <MultiTrigger.Conditions>
+                                                <BindingCondition Binding="{Binding Error}" Value="True"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="IsVisible" Value="False"/>
+                                        </MultiTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                                <Image x:Name="iError" Source="check.png" HorizontalOptions="End" IsVisible="{Binding Error}">
+
+
+                                </Image> 
                             </StackLayout>
 
 

@@ -17,12 +17,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Margin="10,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout Margin="5,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label x:Name="lNumSerie" Text="{Binding NumSerie}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
 
                                 <!--<Label Text="{Binding Noc}" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />-->
 
                                 <Image x:Name="iCheck" Source="checkOk.png" HorizontalOptions="End" IsVisible="{Binding Check}" />
+                                <Image x:Name="iError" Source="check.png" HorizontalOptions="End" IsVisible="{Binding Error}" />
                             </StackLayout>
 
 

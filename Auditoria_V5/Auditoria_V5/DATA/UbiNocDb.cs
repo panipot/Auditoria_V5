@@ -315,13 +315,13 @@ namespace Auditoria_V5.DATA
             string param = auditoria.Fichero;
             //return database.QueryAsync<clUbicacion>("SELECT [Ubicacion] FROM [UbiNoc] where [Fichero]='" + param + "' group by [Ubicacion]");
 
-            return database.QueryAsync<clUbicacion>("select [Ubicacion], [EstUbicacion], [DataMining], count(NOC) as Num_nocs, sum([Check]) as SumCk from UbiNOC where [Fichero] = '" + param + "' group by [Ubicacion], [EstUbicacion],[DataMining]");
+            return database.QueryAsync<clUbicacion>("select [Ubicacion], [EstUbicacion], [DataMining], count(NOC) as Num_regs, count(case when [Noc]<>'' then 1 end) as Num_nocs, sum([Check]) as SumCk from UbiNOC where [Fichero] = '" + param + "' group by [Ubicacion], [EstUbicacion],[DataMining]");
 
         }
         public Task<List<clUbicacion>> GetClUbic(string ubicacion)
         {
 
-            return database.QueryAsync<clUbicacion>("select [Ubicacion], [EstUbicacion], [DataMining], count(NOC) as Num_nocs, sum([Check]) as SumCk from UbiNOC where [Ubicacion] = '" + ubicacion + "' group by [Ubicacion], [EstUbicacion],[DataMining]"); 
+            return database.QueryAsync<clUbicacion>("select [Ubicacion], [EstUbicacion], [DataMining], count(NOC) as Num_regs, count(case when [Noc]<>'' then 1 end) as Num_nocs, sum([Check]) as SumCk from UbiNOC where [Ubicacion] = '" + ubicacion + "' group by [Ubicacion], [EstUbicacion],[DataMining]"); 
             
                
         }

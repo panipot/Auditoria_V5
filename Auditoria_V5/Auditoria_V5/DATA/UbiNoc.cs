@@ -222,6 +222,10 @@ namespace Auditoria_V5.DATA
             get; set;
 
         }
+        public int Num_regs
+        {
+            get; set;
+        }
         public bool Check_total
         {
             get

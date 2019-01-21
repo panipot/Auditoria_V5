@@ -144,7 +144,7 @@ namespace Auditoria_V5
 
                 MessagingCenter.Unsubscribe<App, string>(this, "Barcode");
                 await Navigation.PopAsync();
-
+                //marcar la ubicacion con error????
             }
         }
 

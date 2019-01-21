@@ -11,7 +11,7 @@
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Ubicacion" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"></Label>
-                <Label Text="Nº Regs/ Err. / Revisada" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{StaticResource FontColor}"></Label>
+                <Label Text="Nº Nocs / Nº Regs/ Err. / Revisada" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{StaticResource FontColor}"></Label>
 
             </StackLayout>
             <BoxView HeightRequest="4" Color="{StaticResource FontColor}" ></BoxView>
@@ -21,8 +21,10 @@
                         <ViewCell>
                             <StackLayout Margin="5,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Text="{Binding Ubicacion}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
-                                <Label Text="{Binding Num_nocs}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
-                                <!--<Label Text="{Binding Noc}" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />-->
+                                <Label Text="{Binding Num_nocs}" VerticalTextAlignment="Center" HorizontalOptions="Center" TextColor="{StaticResource FontColor}"/>
+                            <Label Text="/" VerticalTextAlignment="Center" HorizontalOptions="Center" TextColor="{StaticResource FontColor}"/>
+                            <Label Text="{Binding Num_regs}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
+                            <!--<Label Text="{Binding Noc}" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />-->
                                 <Image Source="check.png"  IsVisible="{Binding Error}" />
                                 <Image Source="checkOk.png" HorizontalOptions="End" IsVisible="{Binding Check_total}" />
                             </StackLayout>

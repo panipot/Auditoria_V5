@@ -100,15 +100,32 @@ namespace Auditoria_V5
             }
             else
             {
-                var action = await DisplayAlert("Aviso", "DesMarcar el NSeriado " + seriado.NumSerie + " como encontrado.", "Si", "No");
-                if (action)
+                if (seriado.Error==true)
                 {
-                    seriado.Check = false;
-                    await App.Database.SaveItemAsync2(seriado);
+                    var action = await DisplayAlert("Aviso", "Marcar el NSeriado " + seriado.NumSerie + " como Si encontrado?", "Si", "No");
+                    if (action)
+                    {
+                        seriado.Check = true;
+                        seriado.Error = false;
+                        await App.Database.SaveItemAsync2(seriado);
 
-                    Lista_serial.ItemsSource = null;
-                    Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
+                        Lista_serial.ItemsSource = null;
+                        Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
+                    }
                 }
+                else
+                {
+                    var action = await DisplayAlert("Aviso", "DesMarcar el NSeriado " + seriado.NumSerie + " como encontrado.", "Si", "No");
+                    if (action)
+                    {
+                        seriado.Check = false;
+                        await App.Database.SaveItemAsync2(seriado);
+
+                        Lista_serial.ItemsSource = null;
+                        Lista_serial.ItemsSource = await App.Database.GetSerials(ubinoci);
+                    }
+                }
+                
             }
         }
 

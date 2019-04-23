@@ -1,9 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Auditoria_V5"
              x:Class="Auditoria_V5.ListaUbics" Title="ListaUbics"
             BackgroundColor="{StaticResource BackgroundColor}" >
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:UbicToUbic2Converter x:Key="UbicToUbic2"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <!--<ScrollView>-->
         <StackLayout Padding="5">
@@ -20,7 +25,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Margin="5,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label Text="{Binding Ubicacion}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
+                                <Label Text="{Binding Ubicacion,Converter={StaticResource UbicToUbic2}}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>
                                 <Label Text="{Binding Num_nocs}" VerticalTextAlignment="Center"  HorizontalOptions="Center" TextColor="{StaticResource FontColor}"/>
                             <Label Text="/" VerticalTextAlignment="Center" HorizontalOptions="Center" TextColor="{StaticResource FontColor}"/>
                             <Label Text="{Binding Num_regs}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="{StaticResource FontColor}"/>

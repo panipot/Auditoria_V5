@@ -43,10 +43,10 @@ namespace Auditoria_V5
 
         private async void serial_leido(string arg)
         {
-            var alertSound = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
-            var OkSound = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
-            alertSound.Load("ERROR.wav");
-            OkSound.Load("OK.wav");
+            //var alertSound = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
+            //var OkSound = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
+            //alertSound.Load("ERROR.wav");
+           // OkSound.Load("OK.wav");
             if (eNewSerial.IsFocused)
             {
                 Device.BeginInvokeOnMainThread(async () =>
@@ -62,7 +62,7 @@ namespace Auditoria_V5
                     System.Diagnostics.Debug.WriteLine("Revisando lista en Serials_leido " + item.NumSerie);
                     if ((arg.Replace("\r", "") == "21" + item.NumSerie)|| (arg.Replace("\r", "") == "10" + item.NumSerie))
                     {
-                        OkSound.Play();
+                        //OkSound.Play();
                         seriado = item;
                         item.Check = true;
                         seriado.Check = true;
@@ -77,8 +77,8 @@ namespace Auditoria_V5
                     }
                   
                 }
-                if (encontrado==false)
-                alertSound.Play();
+               // if (encontrado==false)
+               // alertSound.Play();
 
             }
         }

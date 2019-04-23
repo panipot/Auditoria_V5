@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auditoria_V5.Android", "Auditoria_V5\Auditoria_V5.Android\Auditoria_V5.Android.csproj", "{89AEAEE5-F439-47C1-B36D-DBBAF415EBC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auditoria_V5", "Auditoria_V5\Auditoria_V5\Auditoria_V5.csproj", "{000BFD73-09BB-46C9-B32A-460182562E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auditoria_V5", "Auditoria_V5\Auditoria_V5\Auditoria_V5.csproj", "{000BFD73-09BB-46C9-B32A-460182562E03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
